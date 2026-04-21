@@ -1,0 +1,31 @@
+{
+  "hero_banners": [
+    {
+      "id": 1,
+      "title": "Welcome to Efatha TV",
+      "subtitle": "Spreading the true gospel",
+      "image": "assets/onboarding_hero.png"
+    }
+  ],
+  "programs": [
+    {
+      "id": 1,
+      "title": "Evening Prayer",
+      "time": "7:00 PM",
+      "host": "Pastor John"
+    },
+    {
+      "id": 2,
+      "title": "Morning Worship",
+      "time": "8:00 AM",
+      "host": "Sister Sarah"
+    }
+  ],
+  "highlights": [
+    {
+      "id": 1,
+      "title": "KUSANYIKO 2024",
+      "description": "Annual gathering of believers"
+    }
+  ]
+}

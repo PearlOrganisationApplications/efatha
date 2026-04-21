@@ -1,0 +1,26 @@
+{
+  "podcasts": [
+    {
+      "id": 1,
+      "title": "Faith and Works",
+      "author": "EfathaTV",
+      "duration": "45 min"
+    },
+    {
+      "id": 2,
+      "title": "Morning Devotion",
+      "author": "EfathaTV",
+      "duration": "30 min"
+    }
+  ],
+  "schedules": {
+    "tv": [
+      {"time": "08:00", "program": "Morning Worship"},
+      {"time": "12:00", "program": "Midday Prayer"}
+    ],
+    "radio": [
+      {"time": "09:00", "program": "Gospel Hits"},
+      {"time": "21:00", "program": "Night Watch"}
+    ]
+  }
+}
