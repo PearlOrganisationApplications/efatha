@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:project/webview_screen.dart';
-import 'src/core/theme/app_theme.dart';
-import 'src/core/utils/initial_binding.dart';
-import 'src/routes/app_pages.dart';
+import 'package:efatha_tv/webview_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,16 +16,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'EfathaTV Premium',
+      title: 'Efatha TV',
       debugShowCheckedModeBanner: false,
       home: const WebViewScreen(),
-      // theme: AppTheme.light,
-      // darkTheme: AppTheme.dark,
-      // themeMode: ThemeMode.system,
-      // initialBinding: InitialBinding(),
-      // initialRoute: AppPages.initial,
-      // getPages: AppPages.routes,
-      // defaultTransition: Transition.cupertino,
     );
   }
 }
+

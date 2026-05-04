@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project/src/modules/onboarding/controllers/onboarding_controller.dart';
-import 'package:project/src/core/values/app_colors.dart';
+import 'package:efatha_tv/src/modules/onboarding/controllers/onboarding_controller.dart';
+import 'package:efatha_tv/src/core/values/app_colors.dart';
 
 class OnboardingView extends GetView<OnboardingController> {
   const OnboardingView({super.key});

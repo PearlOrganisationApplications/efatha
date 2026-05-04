@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:project/src/routes/app_routes.dart';
+import 'package:efatha_tv/src/routes/app_routes.dart';
 
 class AuthController extends GetxController {
   final isLoading = false.obs;

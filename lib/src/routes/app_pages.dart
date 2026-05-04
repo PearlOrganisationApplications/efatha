@@ -12,11 +12,11 @@ import '../modules/onboarding/bindings/onboarding_binding.dart';
 import '../modules/onboarding/views/onboarding_view.dart';
 import '../modules/media/views/media_view.dart';
 import '../modules/giving/views/donate_view.dart';
-import 'package:project/src/modules/auth/bindings/auth_binding.dart';
-import 'package:project/src/modules/auth/views/login_view.dart';
-import 'package:project/src/modules/auth/views/register_view.dart';
-import 'package:project/src/modules/auth/views/forgot_password_view.dart';
-import 'package:project/src/modules/auth/views/otp_view.dart';
+import 'package:efatha_tv/src/modules/auth/bindings/auth_binding.dart';
+import 'package:efatha_tv/src/modules/auth/views/login_view.dart';
+import 'package:efatha_tv/src/modules/auth/views/register_view.dart';
+import 'package:efatha_tv/src/modules/auth/views/forgot_password_view.dart';
+import 'package:efatha_tv/src/modules/auth/views/otp_view.dart';
 import '../../splash_screen.dart';
 import 'app_routes.dart';
 

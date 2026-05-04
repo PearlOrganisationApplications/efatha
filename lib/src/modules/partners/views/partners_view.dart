@@ -1,4 +1,4 @@
-import 'package:project/src/shared/widgets/action_card.dart';
+import 'package:efatha_tv/src/shared/widgets/action_card.dart';
 import 'local_partner_view.dart';
 import 'international_partner_view.dart';
 import 'package:flutter/material.dart';

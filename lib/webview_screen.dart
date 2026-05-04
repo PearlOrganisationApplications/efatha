@@ -112,8 +112,8 @@ class _WebViewScreenState extends State<WebViewScreen> {
             if (await _controller.canGoBack()) {
               _controller.goBack();
             } else {
+              if (!mounted) return;
               // Option to show exit dialog
-              if (mounted) {
                 final shouldExit = await showDialog<bool>(
                   context: context,
                   builder: (context) => AlertDialog(
@@ -132,8 +132,8 @@ class _WebViewScreenState extends State<WebViewScreen> {
                   ),
                 );
 
+                if (!mounted) return;
                 if (shouldExit ?? false) {
-                  if (!mounted) return;
                   if (Navigator.of(context).canPop()) {
                     Navigator.of(context).pop();
                   } else {
@@ -141,7 +141,6 @@ class _WebViewScreenState extends State<WebViewScreen> {
                     SystemNavigator.pop();
                   }
                 }
-              }
             }
           },
           child: Stack(
