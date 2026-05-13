@@ -7,13 +7,14 @@ import '../../shop/views/shop_view.dart';
 import '../../media/views/media_view.dart';
 import '../../../shared/widgets/app_drawer.dart';
 
-class IndexView extends GetView<IndexController> {
-  const IndexView({super.key});
+class IndexView extends StatelessWidget {
+  IndexController controller = Get.put(IndexController());
+  IndexView({super.key});
 
   @override
   Widget build(BuildContext context) {
     final List<Widget> screens = [
-      const HomeView(),
+      HomeView(),
       const ShopView(),
       const MediaView(),
       const DonateView(),

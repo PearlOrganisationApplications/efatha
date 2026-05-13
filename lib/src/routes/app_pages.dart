@@ -21,30 +21,23 @@ import '../../splash_screen.dart';
 import 'app_routes.dart';
 
 class AppPages {
-  static const initial = AppRoutes.splash;
+  static const initial = AppRoutes.register;
 
   static final routes = [
-    GetPage(
-      name: AppRoutes.splash,
-      page: () => const SplashScreen(),
-    ),
+    GetPage(name: AppRoutes.splash, page: () => const SplashScreen()),
     GetPage(
       name: AppRoutes.onboarding,
       page: () => const OnboardingView(),
       binding: OnboardingBinding(),
     ),
     GetPage(
-      name: AppRoutes.index,
+      name: AppRoutes.dashboard,
       page: () => const DashboardView(),
-      bindings: [
-        IndexBinding(),
-        HomeBinding(),
-        ShopBinding(),
-      ],
+      bindings: [IndexBinding(), HomeBinding(), ShopBinding()],
     ),
     GetPage(
       name: AppRoutes.home,
-      page: () => const HomeView(),
+      page: () => HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -52,14 +45,8 @@ class AppPages {
       page: () => const ShopView(),
       binding: ShopBinding(),
     ),
-    GetPage(
-      name: AppRoutes.media,
-      page: () => const MediaView(),
-    ),
-    GetPage(
-      name: AppRoutes.about,
-      page: () => const AboutView(),
-    ),
+    GetPage(name: AppRoutes.media, page: () => const MediaView()),
+    GetPage(name: AppRoutes.about, page: () => const AboutView()),
     GetPage(
       name: AppRoutes.login,
       page: () => const LoginView(),
@@ -80,13 +67,7 @@ class AppPages {
       page: () => const OtpView(),
       binding: AuthBinding(),
     ),
-    GetPage(
-      name: AppRoutes.donate,
-      page: () => const DonateView(),
-    ),
-    GetPage(
-      name: AppRoutes.live,
-      page: () => const LiveStreamView(),
-    ),
+    GetPage(name: AppRoutes.donate, page: () => const DonateView()),
+    GetPage(name: AppRoutes.live, page: () => const LiveStreamView()),
   ];
 }

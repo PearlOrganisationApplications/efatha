@@ -8,8 +8,9 @@ import '../widgets/highlight_card.dart';
 import '../../../shared/widgets/section_header.dart';
 import '../../../shared/widgets/shimmer_loading.dart';
 
-class HomeView extends GetView<HomeController> {
-  const HomeView({super.key});
+class HomeView extends StatelessWidget {
+  HomeController controller = Get.put(HomeController());
+  HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +20,16 @@ class HomeView extends GetView<HomeController> {
       }
 
       final mockPrograms = [
-        {'title': 'Hello World', 'image': 'https://placehold.co/400x300/blue/white/png?text=Hello+World'},
-        {'title': 'Safari ya imani', 'image': 'https://placehold.co/400x300/purple/white/png?text=Safari+ya+imani'},
+        {
+          'title': 'Hello World',
+          'image':
+              'https://placehold.co/400x300/blue/white/png?text=Hello+World',
+        },
+        {
+          'title': 'Safari ya imani',
+          'image':
+              'https://placehold.co/400x300/purple/white/png?text=Safari+ya+imani',
+        },
       ];
 
       return RefreshIndicator(
@@ -38,7 +47,8 @@ class HomeView extends GetView<HomeController> {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   scrollDirection: Axis.horizontal,
                   itemCount: mockPrograms.length,
-                  itemBuilder: (context, index) => ProgramGridItem(program: mockPrograms[index]),
+                  itemBuilder: (context, index) =>
+                      ProgramGridItem(program: mockPrograms[index]),
                 ),
               ),
               const SizedBox(height: 32),
@@ -59,7 +69,11 @@ class HomeView extends GetView<HomeController> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           if (showArrows)
-            Icon(Icons.arrow_circle_left, color: Colors.blue.shade400, size: 28),
+            Icon(
+              Icons.arrow_circle_left,
+              color: Colors.blue.shade400,
+              size: 28,
+            ),
           if (showArrows) const Spacer(),
           Text(
             title,
@@ -72,7 +86,11 @@ class HomeView extends GetView<HomeController> {
           ),
           if (showArrows) const Spacer(),
           if (showArrows)
-            Icon(Icons.arrow_circle_right, color: Colors.blue.shade400, size: 28),
+            Icon(
+              Icons.arrow_circle_right,
+              color: Colors.blue.shade400,
+              size: 28,
+            ),
         ],
       ),
     );
@@ -80,8 +98,15 @@ class HomeView extends GetView<HomeController> {
 
   Widget _buildProgramsList() {
     final mockPrograms = [
-      {'title': 'Hello World', 'image': 'https://placehold.co/400x300/blue/white/png?text=Hello+World'},
-      {'title': 'Safari ya imani', 'image': 'https://placehold.co/400x300/purple/white/png?text=Safari+ya+imani'},
+      {
+        'title': 'Hello World',
+        'image': 'https://placehold.co/400x300/blue/white/png?text=Hello+World',
+      },
+      {
+        'title': 'Safari ya imani',
+        'image':
+            'https://placehold.co/400x300/purple/white/png?text=Safari+ya+imani',
+      },
     ];
 
     return SizedBox(
@@ -112,11 +137,10 @@ class HomeView extends GetView<HomeController> {
                 Expanded(
                   flex: 3,
                   child: ClipRRect(
-                    borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
-                    child: Image.network(
-                      program['image']!,
-                      fit: BoxFit.cover,
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(12),
                     ),
+                    child: Image.network(program['image']!, fit: BoxFit.cover),
                   ),
                 ),
                 Expanded(
@@ -161,11 +185,19 @@ class HomeView extends GetView<HomeController> {
           _buildHighlightCardContent(),
           Positioned(
             left: -15,
-            child: Icon(Icons.arrow_circle_left, color: Colors.blue.shade400, size: 28),
+            child: Icon(
+              Icons.arrow_circle_left,
+              color: Colors.blue.shade400,
+              size: 28,
+            ),
           ),
           Positioned(
             right: -15,
-            child: Icon(Icons.arrow_circle_right, color: Colors.blue.shade400, size: 28),
+            child: Icon(
+              Icons.arrow_circle_right,
+              color: Colors.blue.shade400,
+              size: 28,
+            ),
           ),
         ],
       ),

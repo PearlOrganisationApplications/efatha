@@ -22,16 +22,16 @@ import '../../contact/views/contact_view.dart';
 import '../../../shared/widgets/custom_app_bar.dart';
 import '../../../shared/widgets/custom_bottom_nav.dart';
 
-class DashboardView extends GetView<IndexController> {
+class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
 
   @override
   Widget build(BuildContext context) {
     // If controller is not yet initialized, we can use Get.find
-    final controller = Get.find<IndexController>();
+    final controller = Get.put(IndexController());
 
     final List<Widget> screens = [
-      const HomeView(),
+      HomeView(),
       const AboutView(),
       const MediaView(),
       const ShopView(),
@@ -49,8 +49,10 @@ class DashboardView extends GetView<IndexController> {
           return CustomAppBar(
             userName: 'Gorge',
             selectedCategory: controller.selectedCategory.value,
-            onTranslateTap: () => Get.snackbar('Language', 'Language selection coming soon'),
-            onSearchTap: () => Get.snackbar('Search', 'Search feature coming soon'),
+            onTranslateTap: () =>
+                Get.snackbar('Language', 'Language selection coming soon'),
+            onSearchTap: () =>
+                Get.snackbar('Search', 'Search feature coming soon'),
             onCategorySelected: (category) {
               controller.updateCategory(category);
               _handleCategoryNavigation(category);
@@ -58,10 +60,9 @@ class DashboardView extends GetView<IndexController> {
           );
         }),
       ),
-      body: Obx(() => IndexedStack(
-            index: controller.currentIndex,
-            children: screens,
-          )),
+      body: Obx(
+        () => IndexedStack(index: controller.currentIndex, children: screens),
+      ),
       bottomNavigationBar: Obx(
         () => CustomBottomNavBar(
           currentIndex: controller.currentIndex,

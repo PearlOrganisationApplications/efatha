@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.11.1
+  sdk: ^3.10.8
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -41,6 +41,12 @@ dependencies:
   flutter_spinkit: ^5.2.1
   url_launcher: ^6.3.2
   webview_flutter: ^4.10.0
+  dio_smart_retry: ^7.0.1
+  shared_preferences: ^2.5.5
+  fluttertoast: ^9.0.0
+  pretty_dio_logger: ^1.4.0
+  pinput: ^6.0.2
+  flutter_inappwebview: ^6.1.5
 
 dev_dependencies:
   flutter_test:

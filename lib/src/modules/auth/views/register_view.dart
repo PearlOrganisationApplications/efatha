@@ -23,12 +23,7 @@ class RegisterView extends GetView<AuthController> {
         child: Column(
           children: [
             // Logo
-            Center(
-              child: Image.asset(
-                'assets/logo.png',
-                height: 80,
-              ),
-            ),
+            Center(child: Image.asset('assets/logo.png', height: 80)),
             const SizedBox(height: 32),
 
             // Register Card
@@ -54,30 +49,40 @@ class RegisterView extends GetView<AuthController> {
                 children: [
                   const Text(
                     'Sign Up Now',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: AppColors.textPrimaryLight),
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.textPrimaryLight,
+                    ),
                   ),
                   const SizedBox(height: 8),
                   const Text(
                     'Please fill the details and create a new account.',
-                    style: TextStyle(fontSize: 14, color: AppColors.textSecondaryLight),
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: AppColors.textSecondaryLight,
+                    ),
                   ),
                   const SizedBox(height: 32),
 
-                  const AuthTextField(
+                  AuthTextField(
+                    controller: controller.nameController,
                     label: 'Name',
                     hint: 'Enter your name',
                     icon: Icons.person_outline,
                   ),
                   const SizedBox(height: 24),
 
-                  const AuthTextField(
+                  AuthTextField(
+                    controller: controller.emailController,
                     label: 'Email',
                     hint: 'Enter your email',
                     icon: Icons.email_outlined,
                   ),
                   const SizedBox(height: 24),
 
-                  const AuthTextField(
+                  AuthTextField(
+                    controller: controller.passwordController,
                     label: 'Password',
                     hint: 'Enter your password',
                     icon: Icons.lock_outline,
@@ -85,17 +90,30 @@ class RegisterView extends GetView<AuthController> {
                   ),
                   const SizedBox(height: 32),
 
-                  Obx(() => ElevatedButton(
-                        onPressed: controller.isLoading.value ? null : controller.register,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.primary,
-                          minimumSize: const Size(double.infinity, 56),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  Obx(
+                    () => ElevatedButton(
+                      onPressed: () async {
+                        await controller.register();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primary,
+                        minimumSize: const Size(double.infinity, 56),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
                         ),
-                        child: controller.isLoading.value
-                            ? const CircularProgressIndicator(color: Colors.white)
-                            : const Text('Continue', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
-                      )),
+                      ),
+                      child: controller.isSignupLoading.value
+                          ? const CircularProgressIndicator(color: Colors.white)
+                          : const Text(
+                              'Continue',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                    ),
+                  ),
                   const SizedBox(height: 24),
 
                   Row(
@@ -111,7 +129,7 @@ class RegisterView extends GetView<AuthController> {
                 ],
               ),
             ),
-            
+
             const SizedBox(height: 40),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
