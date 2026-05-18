@@ -70,7 +70,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
             const Divider(height: 1),
-            _buildCategoryRow(),
+            // _buildCategoryRow(),
           ],
         ),
       ),
@@ -107,7 +107,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       'Partners',
       'Local Partner',
       'International Partner',
-      'Contact'
+      'Contact',
     ];
     return SizedBox(
       height: 48,
@@ -130,7 +130,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   color: isSelected ? Colors.blue.shade700 : Colors.white,
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
-                    color: isSelected ? Colors.blue.shade700 : Colors.grey.shade300,
+                    color: isSelected
+                        ? Colors.blue.shade700
+                        : Colors.grey.shade300,
                   ),
                 ),
                 child: Text(

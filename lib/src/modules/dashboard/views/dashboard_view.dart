@@ -38,37 +38,40 @@ class DashboardView extends StatelessWidget {
       const ProfileView(),
     ];
 
-    return Scaffold(
-      backgroundColor: Colors.grey.shade50,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(115),
-        child: Obx(() {
-          if (controller.currentIndex == 3 || controller.currentIndex == 4) {
-            return const SizedBox.shrink();
-          }
-          return CustomAppBar(
-            userName: 'Gorge',
-            selectedCategory: controller.selectedCategory.value,
-            onTranslateTap: () =>
-                Get.snackbar('Language', 'Language selection coming soon'),
-            onSearchTap: () =>
-                Get.snackbar('Search', 'Search feature coming soon'),
-            onCategorySelected: (category) {
-              controller.updateCategory(category);
-              _handleCategoryNavigation(category);
+    return SafeArea(
+      top: false,
+      child: Scaffold(
+        backgroundColor: Colors.grey.shade50,
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(115),
+          child: Obx(() {
+            if (controller.currentIndex == 3 || controller.currentIndex == 4) {
+              return const SizedBox.shrink();
+            }
+            return CustomAppBar(
+              userName: 'Gorge',
+              selectedCategory: controller.selectedCategory.value,
+              onTranslateTap: () =>
+                  Get.snackbar('Language', 'Language selection coming soon'),
+              onSearchTap: () =>
+                  Get.snackbar('Search', 'Search feature coming soon'),
+              // onCategorySelected: (category) {
+              //   controller.updateCategory(category);
+              //   _handleCategoryNavigation(category);
+              // },
+            );
+          }),
+        ),
+        body: Obx(
+          () => IndexedStack(index: controller.currentIndex, children: screens),
+        ),
+        bottomNavigationBar: Obx(
+          () => CustomBottomNavBar(
+            currentIndex: controller.currentIndex,
+            onTap: (index) {
+              controller.changeIndex(index);
             },
-          );
-        }),
-      ),
-      body: Obx(
-        () => IndexedStack(index: controller.currentIndex, children: screens),
-      ),
-      bottomNavigationBar: Obx(
-        () => CustomBottomNavBar(
-          currentIndex: controller.currentIndex,
-          onTap: (index) {
-            controller.changeIndex(index);
-          },
+          ),
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:efatha_tv/src/core/utils/initial_binding.dart';
+import 'package:efatha_tv/src/modules/auth/controllers/auth_controller.dart';
 import 'package:efatha_tv/src/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,9 @@ import 'src/routes/app_pages.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
+
+  // ✅ Permanent Controller
+  Get.put(AuthController(), permanent: true);
 
   runApp(const MyApp());
 }
@@ -25,8 +29,9 @@ class MyApp extends StatelessWidget {
       initialRoute: AppRoutes.splash,
       getPages: AppPages.routes,
       initialBinding: InitialBinding(),
-      //home:SplashScreem(),
-      //home: const WebViewScreen(),
+
+      // home: SplashScreem(),
+      // home: const WebViewScreen(),
     );
   }
 }

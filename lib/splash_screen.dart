@@ -23,24 +23,24 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void _navigateToNext() async {
     // Check connectivity/baseUrl
-    try {
-      final baseProvider = Get.find<BaseProvider>();
-      await baseProvider.get(''); // Simple check to the base URL
-    } catch (e) {
-      // Ignore errors for now, but in a real app we might show a retry screen
-    }
+    // try {
+    //   final baseProvider = Get.find<BaseProvider>();
+    //   await baseProvider.get(''); // Simple check to the base URL
+    // } catch (e) {
+    //   // Ignore errors for now, but in a real app we might show a retry screen
+    // }
 
     // Check if onboarding is needed
     final bool isFirstTime = _storage.read('isFirstTime') ?? true;
-    
-    // Add a minimum delay for branding visibility
-    await Future.delayed(const Duration(seconds: 2));
 
-    if (isFirstTime) {
-      Get.offAllNamed(AppRoutes.onboarding);
-    } else {
-      Get.offAllNamed(AppRoutes.login);
-    }
+    // Add a minimum delay for branding visibility
+    await Future.delayed(const Duration(seconds: 2), () {
+      if (isFirstTime) {
+        Get.offAllNamed(AppRoutes.onboarding);
+      } else {
+        Get.offAllNamed(AppRoutes.dashboard);
+      }
+    });
   }
 
   @override
@@ -55,7 +55,12 @@ class _SplashScreenState extends State<SplashScreen> {
             const SizedBox(height: 24),
             const Text(
               'EFATHA TV',
-              style: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold, letterSpacing: 2),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 2,
+              ),
             ),
             const SizedBox(height: 8),
             const Text(
