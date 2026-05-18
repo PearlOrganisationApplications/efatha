@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,44 +24,157 @@ class HomeView extends StatelessWidget {
       final mockPrograms = [
         {
           'title': 'Hello World',
-          'image':
-              'https://placehold.co/400x300/blue/white/png?text=Hello+World',
+              'image': 'assets/images/home-image-1.jpeg',
         },
         {
           'title': 'Safari ya imani',
-          'image':
-              'https://placehold.co/400x300/purple/white/png?text=Safari+ya+imani',
+              'image': 'assets/images/home-image-2.jpeg',
+        },
+        {
+          'title': 'Kids Smile',
+              'image': 'assets/images/home-image-3.jpeg',
+        },
+        {
+          'title': '  Mkate wa Uzima',
+          'image': 'assets/images/home-image-4.jpeg',
+        },
+        {
+          'title': 'Kusanyiko',
+              'image': 'assets/images/home-image-5.jpeg',
+        },
+        {
+          'title': 'Nampo ya Imani',
+          'image': 'assets/images/home-image-6.jpeg',
         },
       ];
 
       return RefreshIndicator(
         onRefresh: controller.fetchContent,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const HomeHeroBanner(),
-              const SizedBox(height: 24),
-              const AppSectionHeader(title: 'OUR PROGRAMS'),
-              SizedBox(
-                height: 200,
-                child: ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: mockPrograms.length,
-                  itemBuilder: (context, index) =>
-                      ProgramGridItem(program: mockPrograms[index]),
+        child: Column(
+          children: [
+            _buildCategoryRow(),
+
+            Expanded(
+              child: SingleChildScrollView(
+                controller: controller.scrollController,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const HomeHeroBanner(),
+                    const SizedBox(height: 24),
+                    const AppSectionHeader(title: 'OUR PROGRAMS'),
+                    const SizedBox(height: 12),
+
+                    // GridView — 3 columns, 2 rows
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: mockPrograms.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10,
+                              childAspectRatio: 0.72, // <-- yeh change karo
+                            ),
+
+                        itemBuilder: (context, index) =>
+                            ProgramGridItem(program: mockPrograms[index]),
+                      ),
+                    ),
+
+                    const SizedBox(height: 32),
+                    const AppSectionHeader(title: 'EVENT HIGHLIGHTS'),
+                    const HighlightCard(),
+                    const SizedBox(height: 32),
+                  ],
                 ),
               ),
-              const SizedBox(height: 32),
-              const AppSectionHeader(title: 'EVENT HIGHLIGHTS'),
-              const HighlightCard(),
-              const SizedBox(height: 32),
-            ],
-          ),
+            ),
+          ],
         ),
       );
     });
+  }
+
+  Widget _buildCategoryRow() {
+    final controller = Get.find<HomeController>();
+
+    final categories = [
+      'Giving',
+      'Donate',
+      'Mobile Payment',
+      'Global Giving',
+      'Wire Transfer',
+      'Prayer',
+      'Prayer Request',
+      'Prayer Wall',
+      'Salvation',
+      'Partners',
+      'Local Partner',
+      'International Partner',
+      'Contact',
+    ];
+
+    return Obx(
+      () => AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+
+        child: ImageFiltered(
+          imageFilter: ImageFilter.blur(
+            sigmaX: controller.isBlur.value ? 5 : 0,
+            sigmaY: controller.isBlur.value ? 5 : 0,
+          ),
+
+          child: Opacity(
+            opacity: controller.isBlur.value ? 0.6 : 1,
+
+            child: SizedBox(
+              height: 48,
+
+              child: ListView.separated(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                scrollDirection: Axis.horizontal,
+                itemCount: categories.length,
+
+                separatorBuilder: (context, index) => const SizedBox(width: 12),
+
+                itemBuilder: (context, index) {
+                  return Center(
+                    child: InkWell(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 6,
+                        ),
+
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(color: Colors.black12),
+                        ),
+
+                        child: Text(
+                          categories[index],
+
+                          style: GoogleFonts.outfit(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   Widget _buildSectionHeader(String title, {bool showArrows = false}) {
@@ -92,73 +207,6 @@ class HomeView extends StatelessWidget {
               size: 28,
             ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildProgramsList() {
-    final mockPrograms = [
-      {
-        'title': 'Hello World',
-        'image': 'https://placehold.co/400x300/blue/white/png?text=Hello+World',
-      },
-      {
-        'title': 'Safari ya imani',
-        'image':
-            'https://placehold.co/400x300/purple/white/png?text=Safari+ya+imani',
-      },
-    ];
-
-    return SizedBox(
-      height: 200,
-      child: ListView.builder(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        scrollDirection: Axis.horizontal,
-        itemCount: mockPrograms.length,
-        itemBuilder: (context, index) {
-          final program = mockPrograms[index];
-          return Container(
-            width: 160,
-            margin: const EdgeInsets.only(right: 16),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.05),
-                  blurRadius: 8,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Expanded(
-                  flex: 3,
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.vertical(
-                      top: Radius.circular(12),
-                    ),
-                    child: Image.network(program['image']!, fit: BoxFit.cover),
-                  ),
-                ),
-                Expanded(
-                  child: Center(
-                    child: Text(
-                      program['title']!,
-                      style: GoogleFonts.outfit(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
       ),
     );
   }

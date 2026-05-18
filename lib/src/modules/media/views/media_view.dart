@@ -1,3 +1,4 @@
+import 'package:efatha_tv/src/modules/media/views/paid.show.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
@@ -27,11 +28,11 @@ class MediaView extends StatelessWidget {
           const SizedBox(height: 32),
           _buildMediaGrid(context),
           const SizedBox(height: 32),
-          _buildGradientBanner(
-            context,
-            'Efatha Shop',
-            () => Get.to(() => const ProductsGalleryView()),
-          ),
+          // _buildGradientBanner(
+          //   context,
+          //   'Efatha Shop',
+          //   () => Get.to(() => const ProductsGalleryView()),
+          // ),
           const SizedBox(height: 20),
         ],
       ),
@@ -127,7 +128,7 @@ class MediaView extends StatelessWidget {
       {
         'title': 'TV Schedules',
         'icon': Icons.tv_outlined,
-        'onTap': () => Get.to(() => const SchedulesView()),
+        'onTap': () => showPaidCategoryDialog(context),
       },
       {
         'title': 'Radio Schedules',
@@ -135,7 +136,7 @@ class MediaView extends StatelessWidget {
         'onTap': () => Get.to(() => const SchedulesView()),
       },
       {
-        'title': 'Products',
+        'title': 'Podicast Scheduler',
         'icon': Icons.shopping_cart_outlined,
         'onTap': () => Get.to(() => const ProductsGalleryView()),
       },
