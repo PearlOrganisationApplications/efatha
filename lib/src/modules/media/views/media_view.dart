@@ -1,7 +1,11 @@
+import 'package:efatha_tv/src/modules/media/views/media.cntrl.dart';
 import 'package:efatha_tv/src/modules/media/views/paid.show.dart';
+import 'package:efatha_tv/src/modules/media/views/video.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:media_kit/media_kit.dart';
+import 'package:media_kit_video/media_kit_video.dart';
 import '../widgets/media_grid_item.dart';
 import 'details/live_stream_view.dart';
 import 'details/radio_view.dart';
@@ -11,8 +15,8 @@ import 'details/schedules_view.dart';
 import 'details/products_gallery_view.dart';
 
 class MediaView extends StatelessWidget {
-  const MediaView({super.key});
-
+  MediaView({super.key});
+  MediaController _mediaController = Get.put(MediaController());
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -20,20 +24,70 @@ class MediaView extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
       child: Column(
         children: [
-          _buildGradientBanner(
-            context,
-            'Live Stream',
-            () => Get.to(() => const LiveStreamView()),
-          ),
+          CastrPlayerScreen(),
+          // _buildGradientBanner(
+          //   context,
+          //   'Live Stream',
+          //   () => Get.to(() => const LiveStreamView()),
+          // ),
+          // AspectRatio(
+          //   aspectRatio: 16 / 9,
+          //   child: Video(controller: _mediaController.controller!),
+          // ),
+          // // StreamBuilder(
+          //   stream: _mediaController.player.stream.playing,
+          //   builder: (context, snapshot) {
+          //     final isPlaying = snapshot.data ?? false;
+          //     return Row(
+          //       mainAxisAlignment: MainAxisAlignment.center,
+          //       children: [
+          //         IconButton(
+          //           iconSize: 48,
+          //           icon: Icon(Icons.pause_circle, color: Colors.white),
+          //           onPressed: () => _mediaController.player.playOrPause(),
+          //         ),
+          //         const SizedBox(width: 20),
+          //         IconButton(
+          //           iconSize: 48,
+          //           icon: const Icon(Icons.refresh, color: Colors.white),
+          //           onPressed: () => _mediaController.player.open(
+          //             Media(_mediaController.streamUrl),
+          //           ), // 🔄 Restart
+          //         ),
+          //       ],
+          //     );
+          //   },
+          // ),
+          // const SizedBox(height: 10),
+
+          // // ✅ Buffering indicator
+          // StreamBuilder(
+          //   stream: _mediaController.player.stream.buffering,
+          //   builder: (context, snapshot) {
+          //     final isBuffering = snapshot.data ?? false;
+          //     if (isBuffering) {
+          //       return const Column(
+          //         children: [
+          //           CircularProgressIndicator(color: Colors.white),
+          //           SizedBox(height: 8),
+          //           Text('Buffering...', style: TextStyle(color: Colors.white)),
+          //         ],
+          //       );
+          //     }
+          //     return const SizedBox.shrink();
+          //   },
+          // ),
+
+          // const SizedBox(height: 20),
           const SizedBox(height: 32),
           _buildMediaGrid(context),
           const SizedBox(height: 32),
+
           // _buildGradientBanner(
           //   context,
           //   'Efatha Shop',
           //   () => Get.to(() => const ProductsGalleryView()),
           // ),
-          const SizedBox(height: 20),
         ],
       ),
     );

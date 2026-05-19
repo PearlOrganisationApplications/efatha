@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:efatha_tv/webview_screen.dart';
+import 'package:media_kit/media_kit.dart';
 
 import 'src/routes/app_pages.dart';
 
@@ -14,7 +15,7 @@ void main() async {
 
   // ✅ Permanent Controller
   Get.put(AuthController(), permanent: true);
-
+  MediaKit.ensureInitialized(); // ✅ Zaroori hai
   runApp(const MyApp());
 }
 

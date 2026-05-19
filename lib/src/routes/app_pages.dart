@@ -45,7 +45,7 @@ class AppPages {
       page: () => const ShopView(),
       binding: ShopBinding(),
     ),
-    GetPage(name: AppRoutes.media, page: () => const MediaView()),
+    GetPage(name: AppRoutes.media, page: () => MediaView()),
     GetPage(name: AppRoutes.about, page: () => const AboutView()),
     GetPage(
       name: AppRoutes.login,

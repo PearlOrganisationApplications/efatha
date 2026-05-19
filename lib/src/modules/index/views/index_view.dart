@@ -16,7 +16,7 @@ class IndexView extends StatelessWidget {
     final List<Widget> screens = [
       HomeView(),
       const ShopView(),
-      const MediaView(),
+      MediaView(),
       const DonateView(),
     ];
 
