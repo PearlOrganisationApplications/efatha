@@ -40,7 +40,19 @@ class ProgramGridItem extends StatelessWidget {
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
-                    Image.network(
+                    // Image.network(
+                    //   program['image']!,
+                    //   fit: BoxFit.cover,
+                    //   errorBuilder: (context, error, stackTrace) => Container(
+                    //     color: Colors.grey.shade100,
+                    //     child: const Icon(
+                    //       Icons.broken_image_rounded,
+                    //       color: Colors.grey,
+                    //       size: 28,
+                    //     ),
+                    //   ),
+                    // ),
+                    Image.asset(
                       program['image']!,
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) => Container(
@@ -52,6 +64,7 @@ class ProgramGridItem extends StatelessWidget {
                         ),
                       ),
                     ),
+
                     // Dark gradient at bottom
                     Positioned.fill(
                       child: DecoratedBox(

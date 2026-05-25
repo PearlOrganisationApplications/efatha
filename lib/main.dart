@@ -15,6 +15,9 @@ void main() async {
 
   // ✅ Permanent Controller
   Get.put(AuthController(), permanent: true);
+
+  // ✅ Permanent Controller
+  Get.put(AuthController(), permanent: true);
   MediaKit.ensureInitialized(); // ✅ Zaroori hai
   runApp(const MyApp());
 }

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:efatha_tv/src/modules/media/views/video.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,16 +23,18 @@ class HomeView extends StatelessWidget {
       }
 
       final mockPrograms = [
-        {
-          'title': 'Hello World',
-          'image':
-              'https://placehold.co/400x300/blue/white/png?text=Hello+World',
-        },
+        {'title': 'Hello World', 'image': 'assets/images/home-image-1.jpeg'},
         {
           'title': 'Safari ya imani',
-          'image':
-              'https://placehold.co/400x300/purple/white/png?text=Safari+ya+imani',
+          'image': 'assets/images/home-image-2.jpeg',
         },
+        {'title': 'Kids Smile', 'image': 'assets/images/home-image-3.jpeg'},
+        {
+          'title': '  Mkate wa Uzima',
+          'image': 'assets/images/home-image-4.jpeg',
+        },
+        {'title': 'Kusanyiko', 'image': 'assets/images/home-image-5.jpeg'},
+        {'title': 'Nampo ya Imani', 'image': 'assets/images/home-image-6.jpeg'},
         {
           'title': 'Kids Smile',
           'image':
@@ -64,7 +67,7 @@ class HomeView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const HomeHeroBanner(),
+                    CastrPlayerScreen(),
                     const SizedBox(height: 24),
                     const AppSectionHeader(title: 'OUR PROGRAMS'),
                     const SizedBox(height: 12),

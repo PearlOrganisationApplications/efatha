@@ -24,12 +24,12 @@ class MediaView extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
       child: Column(
         children: [
-          CastrPlayerScreen(),
-          // _buildGradientBanner(
-          //   context,
-          //   'Live Stream',
-          //   () => Get.to(() => const LiveStreamView()),
-          // ),
+          //CastrPlayerScreen(),
+          _buildGradientBanner(
+            context,
+            'Live Stream',
+            () => Get.to(() => const LiveStreamView()),
+          ),
           // AspectRatio(
           //   aspectRatio: 16 / 9,
           //   child: Video(controller: _mediaController.controller!),
@@ -82,12 +82,12 @@ class MediaView extends StatelessWidget {
           const SizedBox(height: 32),
           _buildMediaGrid(context),
           const SizedBox(height: 32),
-
           // _buildGradientBanner(
           //   context,
           //   'Efatha Shop',
           //   () => Get.to(() => const ProductsGalleryView()),
           // ),
+          const SizedBox(height: 20),
         ],
       ),
     );
