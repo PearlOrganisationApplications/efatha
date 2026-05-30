@@ -18,7 +18,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchContent();
+    //  fetchContent();
     scrollController.addListener(() {
       double currentOffset = scrollController.offset;
 
@@ -42,6 +42,7 @@ class HomeController extends GetxController {
   }
 
   Future<void> fetchContent() async {
+    isLoading.value = false;
     isLoading.value = true;
     try {
       final fetchedPosts = await _repository.getPosts();

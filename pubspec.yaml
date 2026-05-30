@@ -38,6 +38,7 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   pinput: ^6.0.2
   flutter_inappwebview: ^6.1.5
+  gap: ^3.0.1
 
 dev_dependencies:
   flutter_test:

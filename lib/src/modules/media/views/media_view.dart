@@ -1,3 +1,4 @@
+import 'package:efatha_tv/src/modules/index/controllers/index_controller.dart';
 import 'package:efatha_tv/src/modules/media/views/media.cntrl.dart';
 import 'package:efatha_tv/src/modules/media/views/paid.show.dart';
 import 'package:efatha_tv/src/modules/media/views/video.dart';
@@ -17,6 +18,7 @@ import 'details/products_gallery_view.dart';
 class MediaView extends StatelessWidget {
   MediaView({super.key});
   MediaController _mediaController = Get.put(MediaController());
+  IndexController _indexController = Get.find<IndexController>();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -25,11 +27,9 @@ class MediaView extends StatelessWidget {
       child: Column(
         children: [
           //CastrPlayerScreen(),
-          _buildGradientBanner(
-            context,
-            'Live Stream',
-            () => Get.to(() => const LiveStreamView()),
-          ),
+          _buildGradientBanner(context, 'Live Stream', () {
+            _indexController.changeIndex(0);
+          }),
           // AspectRatio(
           //   aspectRatio: 16 / 9,
           //   child: Video(controller: _mediaController.controller!),
@@ -166,32 +166,32 @@ class MediaView extends StatelessWidget {
     final mediaItems = [
       {
         'title': 'Efatha Radio',
-        'icon': Icons.radio,
+        'icon': "assets/m1.png",
         'onTap': () => Get.to(() => const RadioView()),
       },
       {
         'title': 'Podcast',
-        'icon': Icons.mic,
+        'icon': "assets/m2.png",
         'onTap': () => Get.to(() => const PodcastGalleryView()),
       },
       {
         'title': 'Social Media',
-        'icon': Icons.share,
+        'icon': "assets/m3.png",
         'onTap': () => Get.to(() => const SocialMediaView()),
       },
       {
         'title': 'TV Schedules',
-        'icon': Icons.tv_outlined,
+        'icon': "assets/m4.png",
         'onTap': () => showPaidCategoryDialog(context),
       },
       {
         'title': 'Radio Schedules',
-        'icon': Icons.schedule,
+        'icon': "assets/m1.png",
         'onTap': () => Get.to(() => const SchedulesView()),
       },
       {
         'title': 'Podicast Scheduler',
-        'icon': Icons.shopping_cart_outlined,
+        'icon': "assets/m2.png",
         'onTap': () => Get.to(() => const ProductsGalleryView()),
       },
     ];
@@ -201,16 +201,16 @@ class MediaView extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
-        crossAxisSpacing: 16,
+        crossAxisSpacing: 0,
         mainAxisSpacing: 16,
-        childAspectRatio: 0.85,
+        childAspectRatio: 0.80,
       ),
       itemCount: mediaItems.length,
       itemBuilder: (context, index) {
         final item = mediaItems[index];
         return MediaGridItem(
           title: item['title'] as String,
-          icon: item['icon'] as IconData,
+          icon: item['icon'] as String,
           onTap: item['onTap'] as VoidCallback,
         );
       },

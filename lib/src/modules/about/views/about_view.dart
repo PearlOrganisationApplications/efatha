@@ -23,7 +23,7 @@ class AboutView extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 32),
-          
+
           Text(
             'Efatha TV',
             style: GoogleFonts.outfit(
@@ -41,12 +41,12 @@ class AboutView extends StatelessWidget {
               height: 1.6,
             ),
           ),
-          
+
           const SizedBox(height: 32),
           ClipRRect(
             borderRadius: BorderRadius.circular(16),
             child: Image.asset(
-              'assets/team_group.png',
+              'assets/images/group.png',
               width: double.infinity,
               height: 220,
               fit: BoxFit.cover,
@@ -57,7 +57,7 @@ class AboutView extends StatelessWidget {
               ),
             ),
           ),
-          
+
           const SizedBox(height: 32),
           Center(
             child: Text(
@@ -72,7 +72,7 @@ class AboutView extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           _buildBulletPoints(),
-          
+
           const SizedBox(height: 48),
           Center(
             child: Text(
@@ -108,88 +108,108 @@ class AboutView extends StatelessWidget {
     ];
 
     return Column(
-      children: points.map((point) => Padding(
-        padding: const EdgeInsets.only(bottom: 12),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              margin: const EdgeInsets.only(top: 6),
-              width: 6,
-              height: 6,
-              decoration: const BoxDecoration(
-                color: Colors.black87,
-                shape: BoxShape.circle,
+      children: points
+          .map(
+            (point) => Padding(
+              padding: const EdgeInsets.only(bottom: 12),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(top: 6),
+                    width: 6,
+                    height: 6,
+                    decoration: const BoxDecoration(
+                      color: Colors.black87,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      point,
+                      style: GoogleFonts.outfit(
+                        fontSize: 13,
+                        color: Colors.black54,
+                        height: 1.5,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Text(
-                point,
-                style: GoogleFonts.outfit(
-                  fontSize: 13,
-                  color: Colors.black54,
-                  height: 1.5,
-                ),
-              ),
-            ),
-          ],
-        ),
-      )).toList(),
+          )
+          .toList(),
     );
   }
 
   Widget _buildHodGrid() {
     final hods = [
-      {'name': 'Daniel Reuben', 'role': 'HOD MEDIA', 'image': 'assets/hod1.png'},
-      {'name': 'Paul Elias', 'role': 'HOD TECHNICAL', 'image': 'assets/hod2.png'},
-      {'name': 'Sarah Moses', 'role': 'HOD CONTENT', 'image': 'assets/hod3.png'},
+      {
+        'name': 'Daniel Reuben',
+        'role': 'HOD MEDIA',
+        'image': 'assets/mock_data/single.png',
+      },
+      {
+        'name': 'Paul Elias',
+        'role': 'HOD TECHNICAL',
+        'image': 'assets/mock_data/single2.png',
+      },
+      {
+        'name': 'Sarah Moses',
+        'role': 'HOD CONTENT',
+        'image': 'assets/mock_data/single3.png',
+      },
     ];
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: hods.map((hod) => Expanded(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 4),
-          child: Column(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  hod['image']!,
-                  height: 100,
-                  width: 80,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) => Container(
-                    height: 100,
-                    width: 80,
-                    color: Colors.grey.shade200,
-                    child: const Icon(Icons.person, color: Colors.grey),
-                  ),
+      children: hods
+          .map(
+            (hod) => Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: Column(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        hod['image']!,
+                        height: 100,
+                        width: 80,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) => Container(
+                          height: 100,
+                          width: 80,
+                          color: Colors.grey.shade200,
+                          child: const Icon(Icons.person, color: Colors.grey),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      hod['name']!,
+                      style: GoogleFonts.outfit(
+                        fontSize: 11,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      hod['role']!,
+                      style: GoogleFonts.outfit(
+                        fontSize: 9,
+                        color: Colors.blue.shade700,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 8),
-              Text(
-                hod['name']!,
-                style: GoogleFonts.outfit(
-                  fontSize: 11,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              Text(
-                hod['role']!,
-                style: GoogleFonts.outfit(
-                  fontSize: 9,
-                  color: Colors.blue.shade700,
-                  fontWeight: FontWeight.w500,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-        ),
-      )).toList(),
+            ),
+          )
+          .toList(),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import '../../../shared/widgets/action_card.dart';
 import 'donate_view.dart';
 import 'mobile_payment_view.dart';
@@ -24,32 +25,100 @@ class GivingHubView extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            AppActionCard(
-              title: 'GIVING',
-              icon: Icons.favorite,
-              color: Colors.blue.shade600,
-              onTap: () => Get.to(() => const DonateView()),
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xff04A3DA),
+
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    height: 70,
+
+                    //    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: Center(
+                      child: Text(
+                        "DONATE",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Gap(30),
+                Expanded(
+                  child: Container(
+                    //   padding: EdgeInsets.symmetric(horizontal: 16),
+                    height: 70,
+                    //    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Color(0xff04A3DA),
+
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "MOBILE GIVING",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 16),
-            AppActionCard(
-              title: 'MOBILE GIVING',
-              icon: Icons.phone_android,
-              color: Colors.cyan.shade600,
-              onTap: () => Get.to(() => const MobilePaymentView()),
-            ),
-            const SizedBox(height: 16),
-            AppActionCard(
-              title: 'GLOBAL GIVING',
-              icon: Icons.public,
-              color: Colors.blue.shade800,
-              onTap: () => Get.to(() => const GlobalGivingView()),
-            ),
-            const SizedBox(height: 16),
-            AppActionCard(
-              title: 'WIRE TRANSFER',
-              icon: Icons.account_balance,
-              color: Colors.blue.shade900,
-              onTap: () => Get.to(() => const WireTransferView()),
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xff04A3DA),
+
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    height: 70,
+
+                    //    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: Center(
+                      child: Text(
+                        "GLOBAL GIVING",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Gap(30),
+                Expanded(
+                  child: Container(
+                    //   padding: EdgeInsets.symmetric(horizontal: 16),
+                    height: 70,
+                    //    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Color(0xff04A3DA),
+
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "WIRE TRANSFER",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

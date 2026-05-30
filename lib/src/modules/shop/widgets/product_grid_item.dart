@@ -5,8 +5,9 @@ import '../views/product_detail_view.dart';
 
 class ProductGridItem extends StatelessWidget {
   final Map<String, dynamic> product;
+  int index;
 
-  const ProductGridItem({super.key, required this.product});
+  ProductGridItem({super.key, required this.product, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +28,12 @@ class ProductGridItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade100,
-                  borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-                  image: const DecorationImage(
-                    image: NetworkImage('https://placehold.co/400x500/EEE/31343C?text=Book+Cover'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+            ClipRRect(
+              borderRadius: BorderRadiusGeometry.circular(12),
+              child: Image.asset(
+                "assets/mv$index.png",
+                height: 150,
+                width: .infinity,
               ),
             ),
             Padding(
@@ -46,7 +43,10 @@ class ProductGridItem extends StatelessWidget {
                 children: [
                   Text(
                     product['title'],
-                    style: GoogleFonts.outfit(fontWeight: FontWeight.bold, fontSize: 13),
+                    style: GoogleFonts.outfit(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 13,
+                    ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -60,7 +60,10 @@ class ProductGridItem extends StatelessWidget {
                     children: [
                       Text(
                         '\$${product['price']}',
-                        style: GoogleFonts.outfit(color: Colors.blue.shade700, fontWeight: FontWeight.bold),
+                        style: GoogleFonts.outfit(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       Text(
                         '\$${product['old_price']}',

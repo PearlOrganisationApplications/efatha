@@ -14,7 +14,7 @@ class ShopView extends StatelessWidget {
   Widget build(BuildContext context) {
     // Get the global cart controller
     final CartController cartController = Get.find<CartController>();
-    
+
     final categories = ['Fiction', 'Drama', 'Fiction', 'Art', 'History'];
     final featuredBook = {
       'title': 'The Glamour History - Hannibal Adofo',
@@ -22,10 +22,30 @@ class ShopView extends StatelessWidget {
       'progress': '82%',
     };
     final products = [
-      {'title': 'The Morac Book 1', 'author': 'By Adam Smith', 'price': '125.00', 'old_price': '145.00'},
-      {'title': 'Elvenwood Forest', 'author': 'By Christopher Henry', 'price': '75.00', 'old_price': '95.00'},
-      {'title': 'Stillwell Long Island', 'author': 'By Adam Smith', 'price': '115.00', 'old_price': '125.00'},
-      {'title': 'Warmage Book 2', 'author': 'By Terry Mansuur', 'price': '85.50', 'old_price': '90.00'},
+      {
+        'title': 'The Morac Book 1',
+        'author': 'By Adam Smith',
+        'price': '125.00',
+        'old_price': '145.00',
+      },
+      {
+        'title': 'Elvenwood Forest',
+        'author': 'By Christopher Henry',
+        'price': '75.00',
+        'old_price': '95.00',
+      },
+      {
+        'title': 'Stillwell Long Island',
+        'author': 'By Adam Smith',
+        'price': '115.00',
+        'old_price': '125.00',
+      },
+      {
+        'title': 'Warmage Book 2',
+        'author': 'By Terry Mansuur',
+        'price': '85.50',
+        'old_price': '90.00',
+      },
     ];
 
     return Scaffold(
@@ -59,12 +79,18 @@ class ShopView extends StatelessWidget {
         onTap: () => Get.to(() => const ShopSearchView()),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          decoration: BoxDecoration(color: Colors.grey.shade100, borderRadius: BorderRadius.circular(12)),
+          decoration: BoxDecoration(
+            color: Colors.grey.shade100,
+            borderRadius: BorderRadius.circular(12),
+          ),
           child: Row(
             children: [
               const Icon(Icons.search, color: Colors.grey),
               const SizedBox(width: 12),
-              Text('Search your favorite book', style: GoogleFonts.outfit(color: Colors.grey, fontSize: 14)),
+              Text(
+                'Search your favorite book',
+                style: GoogleFonts.outfit(color: Colors.grey, fontSize: 14),
+              ),
             ],
           ),
         ),
@@ -88,7 +114,9 @@ class ShopView extends StatelessWidget {
             decoration: BoxDecoration(
               color: isSelected ? Colors.blue.shade700 : Colors.white,
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: isSelected ? Colors.transparent : Colors.grey.shade200),
+              border: Border.all(
+                color: isSelected ? Colors.transparent : Colors.grey.shade200,
+              ),
             ),
             child: Text(
               categories[index],
@@ -116,7 +144,7 @@ class ShopView extends StatelessWidget {
       ),
       itemCount: products.length,
       itemBuilder: (context, index) {
-        return ProductGridItem(product: products[index]);
+        return ProductGridItem(product: products[index], index: index + 1);
       },
     );
   }

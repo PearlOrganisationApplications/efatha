@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class MediaGridItem extends StatelessWidget {
   final String title;
-  final IconData icon;
+  final String icon;
   final VoidCallback onTap;
 
   const MediaGridItem({
@@ -39,7 +39,7 @@ class MediaGridItem extends StatelessWidget {
                 color: Colors.blue.withValues(alpha: 0.05),
                 shape: BoxShape.circle,
               ),
-              child: Icon(icon, color: Colors.blue.shade800, size: 28),
+              child: Image.asset(icon),
             ),
             const SizedBox(height: 12),
             Text(

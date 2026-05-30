@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SocialMediaView extends StatelessWidget {
@@ -7,24 +8,59 @@ class SocialMediaView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Social Media', style: GoogleFonts.outfit(fontWeight: FontWeight.bold)),
-        centerTitle: true,
-      ),
+      appBar: AppBar(),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
         child: Column(
           children: [
+            RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'Connect with Us on\n',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  TextSpan(
+                    text: 'Social Media ',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  TextSpan(
+                    text: 'Platforms',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Gap(10),
             Text(
-              'Connect with Us on Social Media Platforms',
-              textAlign: TextAlign.center,
-              style: GoogleFonts.outfit(fontSize: 18, fontWeight: FontWeight.bold),
+              'Stay Updated by Engaging with Us on Our Social Media Channels',
+              textAlign: TextAlign.start,
+              style: GoogleFonts.outfit(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
             ),
             const SizedBox(height: 16),
             Text(
-              'Stay connected to receive daily updates, spiritual messages and live broadcasts from Efatha TV.',
+              'Efatha Church has many wonderful opportunities ahead, and because of your love and support, thanks to your love and support. We’re leveraging social media to spread the Gospel, sharing the message of salvation and the significance of Jesus Christ’s blood and the Holy Spirit.Click the icons below and subscribe to our social media pages to gain exclusive access to network announcements, live show alerts, livebroadcasts, real-time chat, special offers and much more! Join this new anointed community and be part of what God is doing through Efatha Church',
               textAlign: TextAlign.center,
-              style: GoogleFonts.outfit(fontSize: 14, color: Colors.grey.shade600, height: 1.5),
+              style: GoogleFonts.outfit(
+                fontSize: 14,
+                color: Colors.grey.shade600,
+                height: 1.5,
+              ),
             ),
             const SizedBox(height: 40),
             _buildSocialGrid(),
@@ -37,14 +73,18 @@ class SocialMediaView extends StatelessWidget {
 
   Widget _buildSocialGrid() {
     final platforms = [
-      {'name': 'Facebook', 'icon': Icons.facebook, 'color': Colors.blue.shade900},
-      {'name': 'Instagram', 'icon': Icons.camera_alt, 'color': Colors.pink},
-      {'name': 'WhatsApp', 'icon': Icons.phone, 'color': Colors.green},
-      {'name': 'TikTok', 'icon': Icons.music_note, 'color': Colors.black},
-      {'name': 'YouTube', 'icon': Icons.play_arrow, 'color': Colors.red},
-      {'name': 'X', 'icon': Icons.close, 'color': Colors.black87},
-      {'name': 'Telegram', 'icon': Icons.send, 'color': Colors.blue},
-      {'name': 'Email', 'icon': Icons.email, 'color': Colors.red.shade900},
+      {
+        'name': 'Facebook',
+        'icon': "assets/s1.png",
+        'color': Colors.blue.shade900,
+      },
+      {'name': 'Instagram', 'icon': "assets/s2.png", 'color': Colors.pink},
+      {'name': 'WhatsApp', 'icon': "assets/s3.png", 'color': Colors.green},
+      {'name': 'TikTok', 'icon': "assets/s4.png", 'color': Colors.black},
+      {'name': 'YouTube', 'icon': "assets/s5.png", 'color': Colors.red},
+      {'name': 'X', 'icon': "assets/s51.png", 'color': Colors.black87},
+      {'name': 'Telegram', 'icon': "assets/s6.png", 'color': Colors.blue},
+      {'name': 'Email', 'icon': "assets/s7.png", 'color': Colors.red.shade900},
     ];
 
     return Wrap(
@@ -64,10 +104,16 @@ class SocialMediaView extends StatelessWidget {
           decoration: BoxDecoration(
             color: Colors.white,
             shape: BoxShape.circle,
-            boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 10, offset: const Offset(0, 4))],
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              ),
+            ],
             border: Border.all(color: Colors.grey.shade100),
           ),
-          child: Icon(platform['icon'] as IconData, color: platform['color'] as Color, size: 32),
+          child: Image.asset(platform['icon'] as String),
         ),
         const SizedBox(height: 8),
         Text(
