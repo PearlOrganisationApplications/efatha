@@ -39,6 +39,8 @@ dependencies:
   pinput: ^6.0.2
   flutter_inappwebview: ^6.1.5
   gap: ^3.0.1
+  vimeo_video_player: ^1.0.3
+  youtube_player_flutter: ^10.0.1
 
 dev_dependencies:
   flutter_test:

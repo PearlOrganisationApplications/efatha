@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../shared/widgets/custom_text_field.dart';
 
@@ -10,7 +11,7 @@ class ContactView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'CONTACT US',
+          'CONNECT WITH US',
           style: GoogleFonts.outfit(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -19,43 +20,140 @@ class ContactView extends StatelessWidget {
         padding: const EdgeInsets.all(24),
         child: Column(
           children: [
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.blue.shade50,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Column(
-                children: [
-                  _buildContactInfo(
-                    Icons.location_on,
-                    'Location',
-                    'Dar Es Salaam, Tanzania',
-                  ),
-                  _buildContactInfo(Icons.phone, 'Phone', '+255 123 456 789'),
-                  _buildContactInfo(Icons.email, 'Email', 'info@efathtv.org'),
-                ],
-              ),
+            Text("GET IN TOUCH"),
+            Text(
+              "Have a question or comment? Please send us an email or call if you need an immediate assistance. We’d love to hear from you!",
             ),
-            const SizedBox(height: 32),
-            const AppTextField(label: 'Your Name', hint: 'John Doe'),
-            const SizedBox(height: 20),
-            const AppTextField(
-              label: 'Message',
-              hint: 'How can we help you?',
-              maxLines: 4,
-            ),
-            const SizedBox(height: 32),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue.shade900,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 18),
+
+            Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(shape: BoxShape.circle),
+                  child: Icon(Icons.gps_fixed),
                 ),
-                child: const Text('SEND MESSAGE'),
+                SizedBox(width: 40),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Mailing Address",
+                        style: TextStyle(fontWeight: FontWeight.w700),
+                      ),
+                      Text(
+                        "Efatha TV at Efatha Church Mwenge, 66QH+8P6, Dar es Salaam",
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(shape: BoxShape.circle),
+                  child: Icon(Icons.gps_fixed),
+                ),
+                SizedBox(width: 40),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Phone Number",
+                        style: TextStyle(fontWeight: FontWeight.w700),
+                      ),
+                      Text(
+                        "Efatha TV at Efatha Church Mwenge, 66QH+8P6, Dar es Salaam",
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(shape: BoxShape.circle),
+                  child: Icon(Icons.gps_fixed),
+                ),
+                SizedBox(width: 40),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Email Address",
+                        style: TextStyle(fontWeight: FontWeight.w700),
+                      ),
+                      Text("efathatv@efathachurch.org"),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Text("INFORMATION ABOUT US"),
+            Text("CONTACT US FOR ANY QUESTIONS"),
+            Gap(10),
+
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text("Your Name"),
+
+                      AppTextField(label: "", hint: ""),
+                    ],
+                  ),
+                ),
+                Gap(20),
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text("Your Email"),
+                      AppTextField(label: "", hint: ""),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    children: [
+                      Text("Phone Number"),
+                      Gap(10),
+                      AppTextField(label: "", hint: ""),
+                    ],
+                  ),
+                ),
+                Gap(20),
+                Expanded(
+                  child: Column(
+                    children: [
+                      Text("Company"),
+                      AppTextField(label: "", hint: ""),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Text("Your Message"),
+            AppTextField(label: "", hint: "", maxLines: 8),
+            Container(
+              width: double.infinity,
+              height: 50,
+              decoration: BoxDecoration(
+                color: Colors.blue,
+
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Center(
+                child: Text("SUBMIT", style: TextStyle(color: Colors.white)),
               ),
             ),
           ],

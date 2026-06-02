@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:efatha_tv/src/routes/app_routes.dart';
 import 'package:efatha_tv/src/core/values/app_colors.dart';
-import 'package:efatha_tv/src/data/providers/base_provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

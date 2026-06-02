@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:get/get.dart';
 
 class WebViewScreen extends StatelessWidget {
   final String url;

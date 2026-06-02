@@ -43,15 +43,21 @@ class AppTextField extends StatelessWidget {
           style: GoogleFonts.outfit(fontSize: 15),
           decoration: InputDecoration(
             hintText: hint,
-            hintStyle: GoogleFonts.outfit(color: Colors.grey.shade400, fontSize: 14),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            hintStyle: GoogleFonts.outfit(
+              color: Colors.grey.shade400,
+              fontSize: 14,
+            ),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 16,
+            ),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: Colors.grey.shade300),
+              borderSide: BorderSide(color: Colors.grey.shade600),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: Colors.grey.shade200),
+              borderSide: BorderSide(color: Colors.grey.shade600),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),

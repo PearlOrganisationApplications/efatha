@@ -31,7 +31,7 @@ class MediaView extends StatelessWidget {
             _indexController.changeIndex(0);
           }),
           // AspectRatio(
-          //   aspectRatio: 16 / 9,
+          //   aspectRatio: 16 / 9,A
           //   child: Video(controller: _mediaController.controller!),
           // ),
           // // StreamBuilder(

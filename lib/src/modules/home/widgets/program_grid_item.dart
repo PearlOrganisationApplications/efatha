@@ -1,18 +1,75 @@
+import 'package:efatha_tv/src/modules/home/widgets/video.vlm.dart';
+import 'package:efatha_tv/src/modules/media/views/video.reuabale.dart';
 import 'package:efatha_tv/web.view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProgramGridItem extends StatelessWidget {
+  int index;
   final Map<String, dynamic> program;
 
-  const ProgramGridItem({super.key, required this.program});
+  ProgramGridItem({super.key, required this.program, required this.index});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => WebViewScreen(url: "https://vimeo.com/1024987790"));
+        String url = "";
+
+        switch (index) {
+          case 0:
+            url = "https://youtu.be/yQCxde-_22Q?si=bDzZoPMUafKGHx5g";
+            break;
+
+          case 1:
+            url = "1039423029";
+            break;
+
+          case 2:
+            url = "1039423393";
+            break;
+
+          case 3:
+            url = "1039423097";
+            break;
+
+          case 4:
+            url = "1039422918";
+            break;
+
+          case 5:
+            url =
+                "https://www.youtube.com/embed/E_ngT9vuXXo?si=cyefggyqG2HtIjfa";
+            break;
+
+          case 6:
+            url = "1039424176";
+            break;
+
+          case 7:
+            url = "1039423607";
+            break;
+          case 8:
+            url = "1039422918";
+            break;
+          case 9:
+            url = "1038616246";
+            break;
+
+          case 10:
+            url = "1039448708";
+            break;
+
+          case 11:
+            url = "1039423296";
+            break;
+
+          default:
+            url = "";
+        }
+
+        Get.to(() => VideoPlayerScreen(videoUrl: url));
       },
       borderRadius: BorderRadius.circular(14),
       child: Container(

@@ -43,36 +43,18 @@ class HomeView extends StatelessWidget {
       }
 
       final mockPrograms = [
-        {'title': 'Hello World', 'image': 'assets/images/home-image-1.jpeg'},
-        {
-          'title': 'Safari ya imani',
-          'image': 'assets/images/home-image-2.jpeg',
-        },
-        {'title': 'Kids Smile', 'image': 'assets/images/home-image-3.jpeg'},
-        {
-          'title': '  Mkate wa Uzima',
-          'image': 'assets/images/home-image-4.jpeg',
-        },
-        {'title': 'Kusanyiko', 'image': 'assets/images/home-image-5.jpeg'},
-        {'title': 'Nampo ya Imani', 'image': 'assets/images/home-image-6.jpeg'},
-        {
-          'title': 'Kids Smile',
-          'image':
-              'https://placehold.co/400x300/green/white/png?text=Injili+Live',
-        },
-        {
-          'title': '  Mkate wa Uzima',
-          'image': 'https://placehold.co/400x300/red/white/png?text=Imani+Yetu',
-        },
-        {
-          'title': 'Kusanyiko',
-          'image':
-              'https://placehold.co/400x300/orange/white/png?text=Kusanyiko',
-        },
-        {
-          'title': 'Nampo ya Imani',
-          'image': 'https://placehold.co/400x300/teal/white/png?text=Nampo',
-        },
+        {'title': 'Hello World', 'image': 'assets/images/home1.png'},
+        {'title': 'Safari ya imani', 'image': 'assets/images/home2.png'},
+        {'title': 'Kids Smile', 'image': 'assets/images/home3.png'},
+        {'title': 'Nuru ya Ulimwengu', 'image': 'assets/images/home4.png'},
+        {'title': 'Mkate wa Uzima', 'image': 'assets/images/home5.png'},
+        {'title': 'Mtembeo wa Mwanamke', 'image': 'assets/images/home6.png'},
+        {'title': 'Domy', 'image': 'assets/images/home7.png'},
+        {'title': 'How I Met Jesus', 'image': 'assets/images/home8.png'},
+        {'title': 'Praise and Worship', 'image': 'assets/images/home9.png'},
+        {'title': 'Testimonial', 'image': 'assets/images/home10.png'},
+        {'title': 'Apostolic Crusade', 'image': 'assets/images/home11.png'},
+        {'title': 'Documentary', 'image': 'assets/images/home12.png'},
       ];
 
       return RefreshIndicator(
@@ -117,8 +99,10 @@ class HomeView extends StatelessWidget {
                               childAspectRatio: 0.72, // <-- yeh change karo
                             ),
 
-                        itemBuilder: (context, index) =>
-                            ProgramGridItem(program: mockPrograms[index]),
+                        itemBuilder: (context, index) => ProgramGridItem(
+                          program: mockPrograms[index],
+                          index: index,
+                        ),
                       ),
                     ),
 
