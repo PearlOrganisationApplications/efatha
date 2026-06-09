@@ -41,6 +41,7 @@ dependencies:
   gap: ^3.0.1
   vimeo_video_player: ^1.0.3
   youtube_player_flutter: ^10.0.1
+  just_audio: ^0.10.5
 
 dev_dependencies:
   flutter_test:

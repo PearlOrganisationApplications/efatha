@@ -41,7 +41,7 @@ class DashboardView extends StatelessWidget {
     return SafeArea(
       top: false,
       child: Scaffold(
-        backgroundColor: Colors.grey.shade50,
+      //  backgroundColor: Colors.grey.shade50,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(115),
           child: Obx(() {
@@ -49,22 +49,23 @@ class DashboardView extends StatelessWidget {
               return const SizedBox.shrink();
             }
             return CustomAppBar(
-              userName: 'Gorge',
+              userName: '',
               selectedCategory: controller.selectedCategory.value,
               onTranslateTap: () =>
                   Get.snackbar('Language', 'Language selection coming soon'),
               onSearchTap: () =>
                   Get.snackbar('Search', 'Search feature coming soon'),
-              // onCategorySelected: (category) {
-              //   controller.updateCategory(category);
-              //   _handleCategoryNavigation(category);
-              // },
+              onCategorySelected: (category) {
+                controller.updateCategory(category);
+                _handleCategoryNavigation(category);
+              },
             );
           }),
         ),
         body: Obx(
           () => IndexedStack(index: controller.currentIndex, children: screens),
         ),
+
         bottomNavigationBar: Obx(
           () => CustomBottomNavBar(
             currentIndex: controller.currentIndex,

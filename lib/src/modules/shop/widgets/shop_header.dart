@@ -20,12 +20,19 @@ class ShopHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Hello Gorge!',
-                style: GoogleFonts.outfit(fontSize: 14, color: Colors.grey.shade600),
+                'Hello !',
+                style: GoogleFonts.outfit(
+                  fontSize: 14,
+                  color: Colors.grey.shade600,
+                ),
               ),
               Text(
                 'Keep Exploring',
-                style: GoogleFonts.outfit(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black87),
+                style: GoogleFonts.outfit(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
               ),
             ],
           ),
@@ -35,22 +42,34 @@ class ShopHeader extends StatelessWidget {
                 onPressed: () => Get.to(() => const CartView()),
                 icon: const Icon(Icons.shopping_basket_outlined, size: 28),
               ),
-              Obx(() => cartController.cartItems.isNotEmpty
-                  ? Positioned(
-                      right: 8,
-                      top: 8,
-                      child: Container(
-                        padding: const EdgeInsets.all(4),
-                        decoration: const BoxDecoration(color: Colors.red, shape: BoxShape.circle),
-                        constraints: const BoxConstraints(minWidth: 16, minHeight: 16),
-                        child: Text(
-                          '${cartController.cartItems.length}',
-                          style: const TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
+              Obx(
+                () => cartController.cartItems.isNotEmpty
+                    ? Positioned(
+                        right: 8,
+                        top: 8,
+                        child: Container(
+                          padding: const EdgeInsets.all(4),
+                          decoration: const BoxDecoration(
+                            color: Colors.red,
+                            shape: BoxShape.circle,
+                          ),
+                          constraints: const BoxConstraints(
+                            minWidth: 16,
+                            minHeight: 16,
+                          ),
+                          child: Text(
+                            '${cartController.cartItems.length}',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
-                      ),
-                    )
-                  : const SizedBox.shrink()),
+                      )
+                    : const SizedBox.shrink(),
+              ),
             ],
           ),
         ],

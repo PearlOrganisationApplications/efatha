@@ -1,6 +1,37 @@
+import 'package:efatha_tv/src/modules/index/controllers/index_controller.dart'
+    show IndexController;
+import 'package:efatha_tv/src/modules/media/views/details/audio.card.dart'
+    show PodcastPlayerCard;
+import 'package:efatha_tv/src/shared/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
+import 'package:efatha_tv/src/modules/index/controllers/index_controller.dart';
+import 'package:efatha_tv/src/shared/widgets/custom_app_bar.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:efatha_tv/src/modules/contact/views/contact_view.dart';
+import 'package:efatha_tv/src/modules/giving/views/donate_view.dart';
+import 'package:efatha_tv/src/modules/giving/views/giving_hub_view.dart';
+import 'package:efatha_tv/src/modules/giving/views/global_giving_view.dart';
+import 'package:efatha_tv/src/modules/giving/views/mobile_payment_view.dart';
+import 'package:efatha_tv/src/modules/giving/views/wire_transfer_view.dart';
+
+import 'package:efatha_tv/src/modules/partners/views/international_partner_view.dart';
+import 'package:efatha_tv/src/modules/partners/views/local_partner_view.dart';
+import 'package:efatha_tv/src/modules/partners/views/partners_view.dart';
+import 'package:efatha_tv/src/modules/prayer/views/prayer_hub_view.dart';
+import 'package:efatha_tv/src/modules/prayer/views/prayer_request_view.dart';
+import 'package:efatha_tv/src/modules/prayer/views/prayer_wall_view.dart';
+import 'package:efatha_tv/src/modules/prayer/views/salvation_view.dart';
+
+import 'package:get/get_navigation/src/extension_navigation.dart'
+    show ExtensionSnackbar, GetNavigation;
 
 import '../../../home/controllers/home_controller.dart';
 
@@ -10,28 +41,58 @@ class PodcastGalleryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<HomeController>();
-
+    final controllers = Get.find<IndexController>();
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Podcasts',
-          style: GoogleFonts.outfit(fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(115),
+        child: Obx(() {
+          // if (controller.currentIndex == 3 || controller.currentIndex == 4) {
+          //   return const SizedBox.shrink();
+          // }
+          return CustomAppBar(
+            userName: '',
+            selectedCategory: controllers.selectedCategory.value,
+            onTranslateTap: () =>
+                Get.snackbar('Language', 'Language selection coming soon'),
+            onSearchTap: () =>
+                Get.snackbar('Search', 'Search feature coming soon'),
+            onCategorySelected: (category) {
+              controllers.updateCategory(category);
+              _handleCategoryNavigation(category);
+            },
+          );
+        }),
       ),
+
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              'Listen to Efatha Podcast',
-              style: GoogleFonts.outfit(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+          Gap(40),
+          RichText(
+            text: const TextSpan(
+              children: [
+                TextSpan(
+                  text: "Listen to ",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                TextSpan(
+                  text: "Efatha Podcast",
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
           ),
+
+          Gap(40),
+          PodcastPlayerCard(),
           Expanded(
             child: Obx(() {
               if (controller.isLoading.value && controller.podcasts.isEmpty) {
@@ -94,13 +155,6 @@ class PodcastGalleryView extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis,
                               ),
                               const SizedBox(height: 4),
-                              Text(
-                                'EfathaTV Podcast',
-                                style: GoogleFonts.outfit(
-                                  fontSize: 12,
-                                  color: Colors.grey,
-                                ),
-                              ),
                             ],
                           ),
                         ),
@@ -118,5 +172,49 @@ class PodcastGalleryView extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _handleCategoryNavigation(String category) {
+    switch (category) {
+      case 'Giving':
+        Get.to(() => const GivingHubView());
+        break;
+      case 'Donate':
+        Get.to(() => const DonateView());
+        break;
+      case 'Mobile Payment':
+        Get.to(() => const MobilePaymentView());
+        break;
+      case 'Global Giving':
+        Get.to(() => const GlobalGivingView());
+        break;
+      case 'Wire Transfer':
+        Get.to(() => const WireTransferView());
+        break;
+      case 'Prayer':
+        Get.to(() => const PrayerHubView());
+        break;
+      case 'Prayer Request':
+        Get.to(() => const PrayerRequestView());
+        break;
+      case 'Prayer Wall':
+        Get.to(() => const PrayerWallView());
+        break;
+      case 'Salvation':
+        Get.to(() => const SalvationView());
+        break;
+      case 'Partners':
+        Get.to(() => const PartnersHubView());
+        break;
+      case 'Local Partner':
+        Get.to(() => const LocalPartnerView());
+        break;
+      case 'International Partner':
+        Get.to(() => const InternationalPartnerView());
+        break;
+      case 'Contact':
+        Get.to(() => const ContactView());
+        break;
+    }
   }
 }

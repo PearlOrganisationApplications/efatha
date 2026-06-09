@@ -26,10 +26,19 @@ class MediaView extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
       child: Column(
         children: [
+          Container(
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(22)),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: ClipRRect(
+              borderRadius: BorderRadiusGeometry.circular(6),
+              child: CastrPlayerScreen(),
+            ),
+          ),
+
           //CastrPlayerScreen(),
-          _buildGradientBanner(context, 'Live Stream', () {
-            _indexController.changeIndex(0);
-          }),
+          // _buildGradientBanner(context, 'Live Stream', () {
+          //   _indexController.changeIndex(0);
+          // }),
           // AspectRatio(
           //   aspectRatio: 16 / 9,A
           //   child: Video(controller: _mediaController.controller!),
@@ -167,7 +176,7 @@ class MediaView extends StatelessWidget {
       {
         'title': 'Efatha Radio',
         'icon': "assets/m1.png",
-        'onTap': () => Get.to(() => const RadioView()),
+        'onTap': () => Get.to(() => RadioView()),
       },
       {
         'title': 'Podcast',
@@ -177,12 +186,12 @@ class MediaView extends StatelessWidget {
       {
         'title': 'Social Media',
         'icon': "assets/m3.png",
-        'onTap': () => Get.to(() => const SocialMediaView()),
+        'onTap': () => Get.to(() => SocialMediaView()),
       },
       {
         'title': 'TV Schedules',
         'icon': "assets/m4.png",
-        'onTap': () => showPaidCategoryDialog(context),
+        'onTap': () => Get.to(() => SchedulesView()),
       },
       {
         'title': 'Radio Schedules',
@@ -192,7 +201,7 @@ class MediaView extends StatelessWidget {
       {
         'title': 'Podicast Scheduler',
         'icon': "assets/m2.png",
-        'onTap': () => Get.to(() => const ProductsGalleryView()),
+        'onTap': () => Get.to(() => ProductsGalleryView()),
       },
     ];
 

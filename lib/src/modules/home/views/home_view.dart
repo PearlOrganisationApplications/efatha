@@ -57,107 +57,99 @@ class HomeView extends StatelessWidget {
         {'title': 'Documentary', 'image': 'assets/images/home12.png'},
       ];
 
-      return RefreshIndicator(
-        onRefresh: controller.fetchContent,
-        child: Column(
-          crossAxisAlignment: .center,
-          children: [
-            _buildCategoryRow(),
+      return Column(
+        crossAxisAlignment: .center,
+        children: [
+          //    _buildCategoryRow(),
+          Expanded(
+            child: SingleChildScrollView(
+              controller: controller.scrollController,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(22),
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: ClipRRect(
+                      borderRadius: BorderRadiusGeometry.circular(6),
+                      child: CastrPlayerScreen(),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  const AppSectionHeader(title: 'OUR PROGRAMS'),
+                  const SizedBox(height: 12),
 
-            Expanded(
-              child: SingleChildScrollView(
-                controller: controller.scrollController,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(22),
-                      ),
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: ClipRRect(
-                        borderRadius: BorderRadiusGeometry.circular(6),
-                        child: CastrPlayerScreen(),
+                  // GridView — 3 columns, 2 rows
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: mockPrograms.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            childAspectRatio: 0.60, // <-- yeh change karo
+                          ),
+
+                      itemBuilder: (context, index) => ProgramGridItem(
+                        program: mockPrograms[index],
+                        index: index,
                       ),
                     ),
-                    const SizedBox(height: 24),
-                    const AppSectionHeader(title: 'OUR PROGRAMS'),
-                    const SizedBox(height: 12),
+                  ),
 
-                    // GridView — 3 columns, 2 rows
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: GridView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: mockPrograms.length,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 3,
-                              crossAxisSpacing: 10,
-                              mainAxisSpacing: 10,
-                              childAspectRatio: 0.72, // <-- yeh change karo
-                            ),
-
-                        itemBuilder: (context, index) => ProgramGridItem(
-                          program: mockPrograms[index],
-                          index: index,
+                  const SizedBox(height: 32),
+                  const AppSectionHeader(
+                    title: 'EVENT HIGHLIGHTS',
+                    showActionButton: false,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                            color: Colors.white,
+                            size: 20,
+                          ),
                         ),
-                      ),
-                    ),
-
-                    const SizedBox(height: 32),
-                    const AppSectionHeader(
-                      title: 'EVENT HIGHLIGHTS',
-                      showActionButton: false,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              Icons.arrow_back_ios,
-                              color: Colors.white,
-                              size: 20,
-                            ),
+                        Image.asset("assets/h1.png", fit: .cover, height: 100),
+                        Container(
+                          padding: EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                            shape: BoxShape.circle,
                           ),
-                          Image.asset(
-                            "assets/h1.png",
-                            fit: .cover,
-                            height: 100,
+                          child: Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.white,
+                            size: 20,
                           ),
-                          Container(
-                            padding: EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              Icons.arrow_forward_ios,
-                              color: Colors.white,
-                              size: 20,
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 32),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 32),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       );
     });
   }

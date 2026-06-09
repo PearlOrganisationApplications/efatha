@@ -30,7 +30,7 @@ class ProfileView extends StatelessWidget {
                       radius: 50,
                       backgroundColor: Colors.grey,
                       backgroundImage: NetworkImage(
-                        'https://i.pravatar.cc/150?u=gorge',
+                        'https://i.pravatar.cc/150?u=',
                       ),
                     ),
                     Positioned(
@@ -65,9 +65,12 @@ class ProfileView extends StatelessWidget {
                 style: GoogleFonts.outfit(fontSize: 12, color: Colors.grey),
               ),
               const SizedBox(height: 32),
-              const AppTextField(label: 'Name', hint: 'Gorge'),
+              const AppTextField(label: 'Name', hint: ''),
               const SizedBox(height: 20),
-              const AppTextField(label: 'Phone Number', hint: '+255 768 234 567'),
+              const AppTextField(
+                label: 'Phone Number',
+                hint: '+255 768 234 567',
+              ),
               const SizedBox(height: 20),
               const AppTextField(
                 label: 'Select your gender',
@@ -81,7 +84,7 @@ class ProfileView extends StatelessWidget {
                 suffixIcon: Icon(Icons.arrow_drop_down, color: Colors.grey),
               ),
               const SizedBox(height: 20),
-              const AppTextField(label: 'Email', hint: 'gorge@gmail.com'),
+              const AppTextField(label: 'Email', hint: '@gmail.com'),
               const SizedBox(height: 20),
               const AppTextField(
                 label: 'Password',
