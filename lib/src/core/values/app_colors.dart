@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   // Professional Navy-based color palette
-  static const Color primary = Color(0xFF0D47A1); 
+  static const Color primary = Color(0xFF0D47A1);
   static const Color primaryLight = Color(0xFF1976D2);
   static const Color primaryDark = Color(0xFF002171);
   static const Color accent = Color(0xFF42A5F5);
@@ -26,4 +26,5 @@ class AppColors {
   static const Color error = Color(0xFFEF4444);
   static const Color success = Color(0xFF10B981);
   static const Color warning = Color(0xFFF59E0B);
+  static const Color appcolor = Color(0xFF04A3DA);
 }

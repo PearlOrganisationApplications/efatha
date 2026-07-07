@@ -67,7 +67,7 @@ class AppPages {
       page: () => const OtpView(),
       binding: AuthBinding(),
     ),
-    GetPage(name: AppRoutes.donate, page: () => const DonateView()),
+    GetPage(name: AppRoutes.donate, page: () => DonateView()),
     GetPage(name: AppRoutes.live, page: () => const LiveStreamView()),
   ];
 }

@@ -41,7 +41,7 @@ class PodcastGalleryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<HomeController>();
-    final controllers = Get.find<IndexController>();
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(115),
@@ -51,15 +51,11 @@ class PodcastGalleryView extends StatelessWidget {
           // }
           return CustomAppBar(
             userName: '',
-            selectedCategory: controllers.selectedCategory.value,
+
             onTranslateTap: () =>
                 Get.snackbar('Language', 'Language selection coming soon'),
             onSearchTap: () =>
                 Get.snackbar('Search', 'Search feature coming soon'),
-            onCategorySelected: (category) {
-              controllers.updateCategory(category);
-              _handleCategoryNavigation(category);
-            },
           );
         }),
       ),
@@ -177,34 +173,34 @@ class PodcastGalleryView extends StatelessWidget {
   void _handleCategoryNavigation(String category) {
     switch (category) {
       case 'Giving':
-        Get.to(() => const GivingHubView());
+        Get.to(() => GivingHubView());
         break;
       case 'Donate':
-        Get.to(() => const DonateView());
+        Get.to(() => DonateView());
         break;
       case 'Mobile Payment':
-        Get.to(() => const MobilePaymentView());
+        Get.to(() => MobilePaymentView());
         break;
       case 'Global Giving':
-        Get.to(() => const GlobalGivingView());
+        Get.to(() => GlobalGivingView());
         break;
       case 'Wire Transfer':
-        Get.to(() => const WireTransferView());
+        Get.to(() => WireTransferView());
         break;
       case 'Prayer':
-        Get.to(() => const PrayerHubView());
+        Get.to(() => PrayerHubView());
         break;
       case 'Prayer Request':
-        Get.to(() => const PrayerRequestView());
+        Get.to(() => PrayerRequestView());
         break;
       case 'Prayer Wall':
         Get.to(() => const PrayerWallView());
         break;
       case 'Salvation':
-        Get.to(() => const SalvationView());
+        Get.to(() => SalvationView());
         break;
       case 'Partners':
-        Get.to(() => const PartnersHubView());
+        Get.to(() => PartnersHubView());
         break;
       case 'Local Partner':
         Get.to(() => const LocalPartnerView());

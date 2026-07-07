@@ -42,6 +42,12 @@ dependencies:
   vimeo_video_player: ^1.0.3
   youtube_player_flutter: ^10.0.1
   just_audio: ^0.10.5
+  flutter_cache_manager: ^3.4.1
+  cached_network_image: ^3.4.1
+  loading_animation_widget: ^1.3.0
+  persistent_bottom_nav_bar_v2: ^6.3.2
+  circle_nav_bar: ^2.2.0
+  curved_labeled_navigation_bar: ^2.0.6
 
 dev_dependencies:
   flutter_test:

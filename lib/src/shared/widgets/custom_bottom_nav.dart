@@ -1,257 +1,121 @@
+import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
+import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
+import 'package:efatha_tv/src/modules/index/controllers/index_controller.dart';
+import 'package:efatha_tv/src/shared/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
-  final int currentIndex;
+  int currentIndex;
   final Function(int) onTap;
 
-  const CustomBottomNavBar({
+  CustomBottomNavBar({
     super.key,
     required this.currentIndex,
     required this.onTap,
   });
 
-  static const _primaryBlue = Color(0xFF1A73E8);
-  static const _inactiveGrey = Color(0xFF9E9E9E);
-  static const _mediaAsset = 'assets/n3.png';
-
-  static const double _circleRadius = 30.0; // circle size
-  static const double _protrude = 30.0; // how high circle rises above bar
-  static const double _barHeight = 70.0; // white bar height
-
+  static const _primaryBlue = Color(0xFF04A3DA);
+  final controller = Get.find<IndexController>();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.transparent,
-      height: _barHeight + _protrude,
-      child: Stack(
-        clipBehavior: Clip.none,
-        alignment: Alignment.bottomCenter,
-        children: [
-          // ── White bar with shallow notch ──
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: CustomPaint(
-              painter: _NotchedBarPainter(
-                circleRadius: _circleRadius + 8,
-                notchDepth: 4,
-              ),
-              child: SizedBox(
-                height: _barHeight,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: _buildNavItem(context, 0, 'assets/n1.png', 'Home'),
-                    ),
-                    Expanded(
-                      child: _buildNavItem(
-                        context,
-                        1,
-                        'assets/n2.png',
-                        'About',
-                      ),
-                    ),
+    return CurvedNavigationBar(
+      // ✅ Always locked to 2 — curve never moves
+      index: 2,
+      // ✅ Block package's internal index change; we handle it ourselves
+      letIndexChange: (index) {
+        controller.changeIndex(index);
 
-                    // ── Center slot: just "Media" label at bottom ──
-                    SizedBox(
-                      width: (_circleRadius + 8) * 2 + 16,
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 10),
-                          child: Text(
-                            'Media',
-                            style: GoogleFonts.outfit(
-                              fontSize: 11,
-                              fontWeight: currentIndex == 2
-                                  ? FontWeight.w600
-                                  : FontWeight.w400,
-                              color: currentIndex == 2
-                                  ? _primaryBlue
-                                  : _inactiveGrey,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    Expanded(
-                      child: _buildNavItem(
-                        context,
-                        3,
-                        'assets/n4.png',
-                        'E-Store',
-                      ),
-                    ),
-                    Expanded(
-                      child: _buildNavItem(
-                        context,
-                        4,
-                        'assets/n5.png',
-                        'Profile',
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-
-          // ── Circle button: floats above bar ──
-          Positioned(
-            top: 0,
-            child: GestureDetector(
-              onTap: () => onTap(2),
-              behavior: HitTestBehavior.opaque,
-              child: Container(
-                width: _circleRadius * 2,
-                height: _circleRadius * 2,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                  border: Border.all(
-                    color: currentIndex == 2 ? _primaryBlue : Colors.white,
-                    width: 2.8,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: _primaryBlue.withValues(
-                        alpha: currentIndex == 2 ? 0.30 : 0.12,
-                      ),
-                      blurRadius: 18,
-                      offset: const Offset(0, 5),
-                    ),
-                    const BoxShadow(
-                      color: Color(0x10000000),
-                      blurRadius: 6,
-                      offset: Offset(0, 2),
-                    ),
-                  ],
-                ),
-                child: Center(
-                  child: Image.asset(
-                    _mediaAsset,
-                    width: 26,
-                    height: 26,
-                    color: currentIndex == 2
-                        ? _primaryBlue
-                        : const Color(0xFF546E7A),
-                    colorBlendMode: BlendMode.srcIn,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
+        return false;
+      },
+      onTap: (i) {},
+      iconPadding: 0,
+      height: 70,
+      //maxWidth: 22,
+      color: Colors.white,
+      backgroundColor: Colors.transparent,
+      buttonBackgroundColor: Colors.transparent,
+      animationCurve: Curves.easeOutCubic,
+      animationDuration: const Duration(milliseconds: 300),
+      items: [
+        CurvedNavigationBarItem(
+          child: _navIcon(asset: 'assets/n1.png', isActive: currentIndex == 0),
+          label: 'Home',
+          labelStyle: _labelStyle(isActive: currentIndex == 0),
+        ),
+        CurvedNavigationBarItem(
+          child: _navIcon(asset: 'assets/n2.png', isActive: currentIndex == 1),
+          label: 'About',
+          labelStyle: _labelStyle(isActive: currentIndex == 1),
+        ),
+        CurvedNavigationBarItem(
+          child: _mediaCircle(isActive: currentIndex == 2),
+          label: 'Media',
+          labelStyle: _labelStyle(isActive: currentIndex == 2),
+        ),
+        CurvedNavigationBarItem(
+          child: _navIcon(asset: 'assets/n4.png', isActive: currentIndex == 3),
+          label: 'E-Store',
+          labelStyle: _labelStyle(isActive: currentIndex == 3),
+        ),
+        CurvedNavigationBarItem(
+          child: _navIcon(asset: 'assets/n5.png', isActive: currentIndex == 4),
+          label: 'Profile',
+          labelStyle: _labelStyle(isActive: currentIndex == 4),
+        ),
+      ],
     );
   }
 
-  Widget _buildNavItem(
-    BuildContext context,
-    int index,
-    String asset,
-    String label,
-  ) {
-    final isActive = currentIndex == index;
-    final screenWidth = MediaQuery.of(context).size.width;
-    final iconSize = screenWidth < 360 ? 20.0 : 22.0;
-    final fontSize = screenWidth < 360 ? 10.0 : 11.0;
+  static TextStyle _labelStyle({required bool isActive}) {
+    return GoogleFonts.outfit(
+      fontSize: 10.5,
+      fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
+      color: isActive ? _primaryBlue : Colors.black54,
+    );
+  }
 
-    return InkWell(
-      onTap: () => onTap(index),
-      borderRadius: BorderRadius.circular(12),
-      splashColor: _primaryBlue.withValues(alpha: 0.08),
-      highlightColor: Colors.transparent,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              asset,
-              width: iconSize,
-              height: iconSize,
-              color: isActive ? _primaryBlue : _inactiveGrey,
-              colorBlendMode: BlendMode.srcIn,
-            ),
-            const SizedBox(height: 4),
-            Text(
-              label,
-              style: GoogleFonts.outfit(
-                fontSize: fontSize,
-                fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
-                color: isActive ? _primaryBlue : _inactiveGrey,
-              ),
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
+  static Widget _navIcon({required String asset, required bool isActive}) {
+    return Image.asset(
+      asset,
+      width: 22,
+      height: 22,
+      color: isActive ? _primaryBlue : Colors.black54,
+      colorBlendMode: BlendMode.srcIn,
+    );
+  }
+
+  static Widget _mediaCircle({required bool isActive}) {
+    return Transform.translate(
+      offset: const Offset(0, 8), // adjust value
+      child: Container(
+        width: 56,
+        height: 56,
+        padding: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.white,
+          border: Border.all(color: _primaryBlue, width: 2.5),
+          boxShadow: [
+            BoxShadow(
+              color: _primaryBlue.withOpacity(isActive ? 0.25 : 0.10),
+              blurRadius: 10,
+              offset: const Offset(0, 3),
             ),
           ],
+        ),
+        child: Center(
+          child: Image.asset(
+            'assets/n3.png',
+            width: 25,
+            height: 25,
+            color: _primaryBlue,
+            colorBlendMode: BlendMode.srcIn,
+          ),
         ),
       ),
     );
   }
-}
-
-/// White bar with a shallow smooth notch cut at the top-center.
-class _NotchedBarPainter extends CustomPainter {
-  final double circleRadius;
-  final double notchDepth;
-
-  const _NotchedBarPainter({
-    required this.circleRadius,
-    required this.notchDepth,
-  });
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    // Soft drop shadow
-    canvas.drawPath(
-      _buildPath(size),
-      Paint()
-        ..color = const Color(0x14000000)
-        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 10),
-    );
-    // White fill
-    canvas.drawPath(
-      _buildPath(size),
-      Paint()
-        ..color = Colors.white
-        ..style = PaintingStyle.fill,
-    );
-  }
-
-  Path _buildPath(Size size) {
-    final cx = size.width / 2;
-    final r = circleRadius;
-    const margin = 8.0;
-    final left = cx - r - margin;
-    final right = cx + r + margin;
-
-    return Path()
-      ..moveTo(0, 0)
-      ..lineTo(left - 16, 0)
-      // Smooth entry curve into notch
-      ..cubicTo(left - 4, 0, left, notchDepth * 0.35, left + margin, notchDepth)
-      // Gentle arc across notch bottom
-      ..arcToPoint(
-        Offset(right - margin, notchDepth),
-        radius: Radius.circular(r),
-        clockwise: false,
-      )
-      // Smooth exit curve out of notch
-      ..cubicTo(right, notchDepth * 0.35, right + 4, 0, right + 16, 0)
-      ..lineTo(size.width, 0)
-      ..lineTo(size.width, size.height)
-      ..lineTo(0, size.height)
-      ..close();
-  }
-
-  @override
-  bool shouldRepaint(_NotchedBarPainter old) =>
-      old.circleRadius != circleRadius || old.notchDepth != notchDepth;
 }

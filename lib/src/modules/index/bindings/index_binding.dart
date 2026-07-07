@@ -1,3 +1,4 @@
+import 'package:efatha_tv/src/shared/widgets/custom_app_bar.dart';
 import 'package:get/get.dart';
 
 import '../controllers/index_controller.dart';

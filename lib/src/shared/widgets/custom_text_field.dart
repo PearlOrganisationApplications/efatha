@@ -10,6 +10,12 @@ class AppTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final bool readOnly;
 
+  // Customizable properties
+  final Color borderColor;
+  final Color focusedBorderColor;
+  final Color fillColor;
+  final double borderRadius;
+
   const AppTextField({
     super.key,
     required this.label,
@@ -19,10 +25,19 @@ class AppTextField extends StatelessWidget {
     this.maxLines = 1,
     this.suffixIcon,
     this.readOnly = false,
+    this.borderColor = const Color(0xFFBDBDBD),
+    this.focusedBorderColor = Colors.blue,
+    this.fillColor = const Color(0xFFF8F8F8),
+    this.borderRadius = 12,
   });
 
   @override
   Widget build(BuildContext context) {
+    final border = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(borderRadius),
+      borderSide: BorderSide(color: borderColor),
+    );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -30,8 +45,8 @@ class AppTextField extends StatelessWidget {
           label,
           style: GoogleFonts.outfit(
             fontSize: 14,
-            color: Colors.grey.shade700,
             fontWeight: FontWeight.w600,
+            color: Colors.grey.shade700,
           ),
         ),
         const SizedBox(height: 8),
@@ -44,28 +59,22 @@ class AppTextField extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hint,
             hintStyle: GoogleFonts.outfit(
-              color: Colors.grey.shade400,
               fontSize: 14,
+              color: Colors.grey.shade400,
             ),
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 16,
               vertical: 16,
             ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: Colors.grey.shade600),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(color: Colors.grey.shade600),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: Colors.blue, width: 1.5),
-            ),
             filled: true,
-            fillColor: Colors.grey.shade50,
+            fillColor: fillColor,
             suffixIcon: suffixIcon,
+            border: border,
+            enabledBorder: border,
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(borderRadius),
+              borderSide: BorderSide(color: focusedBorderColor, width: 1.5),
+            ),
           ),
         ),
       ],

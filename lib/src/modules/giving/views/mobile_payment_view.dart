@@ -1,90 +1,67 @@
+import 'package:efatha_tv/src/modules/shop/views/app.text.dart';
+import 'package:efatha_tv/src/shared/widgets/custom_app_bar.dart';
+import 'package:efatha_tv/utils/cached.iamge.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 
 class MobilePaymentView extends StatelessWidget {
-  const MobilePaymentView({super.key});
+  MobilePaymentView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('MOBILE GIVING', style: GoogleFonts.outfit(fontWeight: FontWeight.bold)),
-        centerTitle: true,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(115),
+        child: CustomAppBar(
+          userName: '',
+
+          onTranslateTap: () =>
+              Get.snackbar('Language', 'Language selection coming soon'),
+          onSearchTap: () =>
+              Get.snackbar('Search', 'Search feature coming soon'),
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: 180,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade200,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: const Center(child: Icon(Icons.smartphone, size: 80, color: Colors.grey)),
+            AppText(
+              title: "Mobile Giving",
+              fontSize: 17,
+              fontWeight: FontWeight.w700,
             ),
-            const SizedBox(height: 24),
-            Text(
-              'PAYMENT INSTRUCTIONS',
-              style: GoogleFonts.outfit(fontSize: 18, fontWeight: FontWeight.bold),
+            const SizedBox(height: 12),
+
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: AppCachedImage(
+                imageUrl:
+                    "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=1200&q=80",
+              ),
+            ),
+            const SizedBox(height: 12),
+            AppText(
+              title: "BECOME A EFATHA TV PARTNER",
+              fontSize: 17,
+              fontWeight: FontWeight.w500,
             ),
             const SizedBox(height: 12),
             Text(
-              'Follow these steps to give via mobile money platforms. Your support helps us reach more souls.',
-              style: GoogleFonts.outfit(fontSize: 14, color: Colors.grey.shade700),
+              "We welcome you to a life-changing opportunity to become a Partner in sharing the good news of Jesus Christ.\n\n"
+              "Efatha TV's support is having a global impact. Efatha TV Partners are transforming lives around the clock. Our lives are the answer to somebody's question and the solution to somebody's problem. Every single day, across the earth, somebody steps into their destiny because of our obedience. Jesus said, \"Go\"; and that is what we are doing. But we realize it takes more than our anointing to do the job. It also takes your support, faith, prayers, and finances.\n\n"
+              "We understand the spiritual principle of synergy. We know that when we combine forces, the results will be far greater than the mere addition of our strengths. This is why we invite you to partner with us.\n\n"
+              "Support us on a regular basis by signing up to be an Efatha TV Partner today.",
+              style: TextStyle(
+                fontSize: 14,
+                height: 1.6,
+                color: Colors.black87,
+              ),
+              textAlign: TextAlign.justify,
             ),
-            const SizedBox(height: 24),
-            _buildProviderLogoRow(),
-            const SizedBox(height: 32),
-            _buildStep(1, 'Dial *150*00# (M-Pesa) or corresponding USSD.'),
-            _buildStep(2, 'Select "Pay Bills" or "Lipa kwa M-Pesa".'),
-            _buildStep(3, 'Enter Business Number: 123456.'),
-            _buildStep(4, 'Enter Reference: EFATHA.'),
-            _buildStep(5, 'Enter Amount and PIN.'),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildProviderLogoRow() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        _buildLogoPlaceholder('M-Pesa', Colors.red),
-        _buildLogoPlaceholder('Tigo', Colors.blue),
-        _buildLogoPlaceholder('Airtel', Colors.red.shade900),
-      ],
-    );
-  }
-
-  Widget _buildLogoPlaceholder(String name, Color color) {
-    return Column(
-      children: [
-        Container(
-          width: 60,
-          height: 60,
-          decoration: BoxDecoration(color: color.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(12)),
-          child: Center(child: Text(name[0], style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 24))),
-        ),
-        const SizedBox(height: 8),
-        Text(name, style: GoogleFonts.outfit(fontSize: 12)),
-      ],
-    );
-  }
-
-  Widget _buildStep(int number, String text) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 16),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CircleAvatar(radius: 12, backgroundColor: Colors.blue, child: Text('$number', style: const TextStyle(color: Colors.white, fontSize: 12))),
-          const SizedBox(width: 16),
-          Expanded(child: Text(text, style: GoogleFonts.outfit(fontSize: 14))),
-        ],
       ),
     );
   }

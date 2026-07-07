@@ -40,7 +40,6 @@ class RadioView extends StatefulWidget {
 
 class _RadioViewState extends State<RadioView> {
   // ── GetX controller ──────────────────────────────────────────────────────
-  final controller = Get.find<IndexController>();
 
   // ── Audio ─────────────────────────────────────────────────────────────────
   final AudioPlayer _player = AudioPlayer();
@@ -154,7 +153,7 @@ class _RadioViewState extends State<RadioView> {
             ),
             onPressed: () {
               Navigator.of(context).pop();
-              Get.to(() => const GivingHubView());
+              Get.to(() => GivingHubView());
             },
             child: Text(
               'Give Now',
@@ -188,15 +187,11 @@ class _RadioViewState extends State<RadioView> {
         child: Obx(
           () => CustomAppBar(
             userName: '',
-            selectedCategory: controller.selectedCategory.value,
+
             onTranslateTap: () =>
                 Get.snackbar('Language', 'Language selection coming soon'),
             onSearchTap: () =>
                 Get.snackbar('Search', 'Search feature coming soon'),
-            onCategorySelected: (category) {
-              controller.updateCategory(category);
-              _handleCategoryNavigation(category);
-            },
           ),
         ),
       ),
@@ -348,34 +343,34 @@ class _RadioViewState extends State<RadioView> {
   void _handleCategoryNavigation(String category) {
     switch (category) {
       case 'Giving':
-        Get.to(() => const GivingHubView());
+        Get.to(() => GivingHubView());
         break;
       case 'Donate':
-        Get.to(() => const DonateView());
+        Get.to(() => DonateView());
         break;
       case 'Mobile Payment':
-        Get.to(() => const MobilePaymentView());
+        Get.to(() => MobilePaymentView());
         break;
       case 'Global Giving':
-        Get.to(() => const GlobalGivingView());
+        Get.to(() => GlobalGivingView());
         break;
       case 'Wire Transfer':
-        Get.to(() => const WireTransferView());
+        Get.to(() => WireTransferView());
         break;
       case 'Prayer':
-        Get.to(() => const PrayerHubView());
+        Get.to(() => PrayerHubView());
         break;
       case 'Prayer Request':
-        Get.to(() => const PrayerRequestView());
+        Get.to(() => PrayerRequestView());
         break;
       case 'Prayer Wall':
         Get.to(() => const PrayerWallView());
         break;
       case 'Salvation':
-        Get.to(() => const SalvationView());
+        Get.to(() => SalvationView());
         break;
       case 'Partners':
-        Get.to(() => const PartnersHubView());
+        Get.to(() => PartnersHubView());
         break;
       case 'Local Partner':
         Get.to(() => const LocalPartnerView());

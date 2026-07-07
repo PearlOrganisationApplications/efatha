@@ -1,8 +1,8 @@
+import 'package:efatha_tv/src/modules/shop/views/cart_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 import '../controllers/cart_controller.dart';
-import '../views/cart_view.dart';
 
 class ShopHeader extends StatelessWidget {
   final CartController cartController;
@@ -38,9 +38,17 @@ class ShopHeader extends StatelessWidget {
           ),
           Stack(
             children: [
-              IconButton(
-                onPressed: () => Get.to(() => const CartView()),
-                icon: const Icon(Icons.shopping_basket_outlined, size: 28),
+              GestureDetector(
+                onTap: () => Get.to(() => const CartView()),
+                child: Container(
+                  padding: .all(10),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.black12),
+                  ),
+
+                  child: Image.asset("assets/cart.png", height: 25, width: 25),
+                ),
               ),
               Obx(
                 () => cartController.cartItems.isNotEmpty

@@ -1,7 +1,10 @@
+import 'package:efatha_tv/app.back.dart';
+import 'package:efatha_tv/src/modules/shop/views/btw.dart';
+import 'package:efatha_tv/src/modules/shop/views/order_review_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'order_review_view.dart';
 
 class AddressView extends StatelessWidget {
   const AddressView({super.key});
@@ -13,8 +16,14 @@ class AddressView extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: const BackButton(color: Colors.black),
-        title: Text('Add New Address', style: GoogleFonts.outfit(color: Colors.black, fontWeight: FontWeight.bold)),
+        leading: AppBackButton(),
+        title: Text(
+          'Add New Address',
+          style: GoogleFonts.outfit(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -35,18 +44,14 @@ class AddressView extends StatelessWidget {
             const SizedBox(height: 20),
             _buildField('Zip Code', '64667'),
             const SizedBox(height: 40),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () => Get.to(() => const OrderReviewView()),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.cyan.shade600,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 18),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                ),
-                child: Text('Add Address', style: GoogleFonts.outfit(fontSize: 16, fontWeight: FontWeight.bold)),
-              ),
+            AppButton(
+              padding: EdgeInsets.all(0),
+              //width: double.infinity,
+              radius: 40,
+
+              onPressed: () => Get.to(() => const OrderReviewView()),
+
+              title: "Add Address",
             ),
           ],
         ),
@@ -58,15 +63,27 @@ class AddressView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: GoogleFonts.outfit(fontSize: 14, color: Colors.grey.shade600)),
+        Text(
+          label,
+          style: GoogleFonts.outfit(fontSize: 14, color: Colors.grey.shade600),
+        ),
         const SizedBox(height: 8),
         TextField(
           decoration: InputDecoration(
             hintText: hint,
             hintStyle: GoogleFonts.outfit(color: Colors.black87),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: Colors.grey.shade300)),
-            enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: Colors.grey.shade200)),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 16,
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: Colors.grey.shade300),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: Colors.grey.shade200),
+            ),
             filled: true,
             fillColor: Colors.grey.shade50,
           ),

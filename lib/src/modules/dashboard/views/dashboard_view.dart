@@ -1,4 +1,6 @@
+import 'package:efatha_tv/src/modules/media/views/details/products_gallery_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../../index/controllers/index_controller.dart';
 import '../../home/views/home_view.dart';
@@ -34,44 +36,44 @@ class DashboardView extends StatelessWidget {
       HomeView(),
       const AboutView(),
       MediaView(),
-      const ShopView(),
+      ProductsGalleryView(),
       const ProfileView(),
     ];
 
-    return SafeArea(
-      top: false,
-      child: Scaffold(
-      //  backgroundColor: Colors.grey.shade50,
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(115),
-          child: Obx(() {
-            if (controller.currentIndex == 3 || controller.currentIndex == 4) {
-              return const SizedBox.shrink();
-            }
-            return CustomAppBar(
-              userName: '',
-              selectedCategory: controller.selectedCategory.value,
-              onTranslateTap: () =>
-                  Get.snackbar('Language', 'Language selection coming soon'),
-              onSearchTap: () =>
-                  Get.snackbar('Search', 'Search feature coming soon'),
-              onCategorySelected: (category) {
-                controller.updateCategory(category);
-                _handleCategoryNavigation(category);
-              },
-            );
-          }),
-        ),
-        body: Obx(
-          () => IndexedStack(index: controller.currentIndex, children: screens),
-        ),
+    return AnnotatedRegion(
+      value: SystemUiOverlayStyle(statusBarColor: Colors.white),
+      child: SafeArea(
+        top: false,
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: PreferredSize(
+            preferredSize: const Size.fromHeight(115),
+            child: Obx(() {
+              if (controller.currentIndex == 4) {
+                return const SizedBox.shrink();
+              }
+              return CustomAppBar(
+                userName: '',
+                isFromHome: true,
+                onTranslateTap: () =>
+                    Get.snackbar('Language', 'Language selection coming soon'),
+                onSearchTap: () =>
+                    Get.snackbar('Search', 'Search feature coming soon'),
+              );
+            }),
+          ),
+          body: Obx(
+            () =>
+                IndexedStack(index: controller.currentIndex, children: screens),
+          ),
 
-        bottomNavigationBar: Obx(
-          () => CustomBottomNavBar(
-            currentIndex: controller.currentIndex,
-            onTap: (index) {
-              controller.changeIndex(index);
-            },
+          bottomNavigationBar: Obx(
+            () => CustomBottomNavBar(
+              currentIndex: controller.currentIndex,
+              onTap: (index) {
+                controller.changeIndex(index);
+              },
+            ),
           ),
         ),
       ),
@@ -81,34 +83,34 @@ class DashboardView extends StatelessWidget {
   void _handleCategoryNavigation(String category) {
     switch (category) {
       case 'Giving':
-        Get.to(() => const GivingHubView());
+        Get.to(() => GivingHubView());
         break;
       case 'Donate':
-        Get.to(() => const DonateView());
+        Get.to(() => DonateView());
         break;
       case 'Mobile Payment':
-        Get.to(() => const MobilePaymentView());
+        Get.to(() => MobilePaymentView());
         break;
       case 'Global Giving':
-        Get.to(() => const GlobalGivingView());
+        Get.to(() => GlobalGivingView());
         break;
       case 'Wire Transfer':
-        Get.to(() => const WireTransferView());
+        Get.to(() => WireTransferView());
         break;
       case 'Prayer':
-        Get.to(() => const PrayerHubView());
+        Get.to(() => PrayerHubView());
         break;
       case 'Prayer Request':
-        Get.to(() => const PrayerRequestView());
+        Get.to(() => PrayerRequestView());
         break;
       case 'Prayer Wall':
         Get.to(() => const PrayerWallView());
         break;
       case 'Salvation':
-        Get.to(() => const SalvationView());
+        Get.to(() => SalvationView());
         break;
       case 'Partners':
-        Get.to(() => const PartnersHubView());
+        Get.to(() => PartnersHubView());
         break;
       case 'Local Partner':
         Get.to(() => const LocalPartnerView());

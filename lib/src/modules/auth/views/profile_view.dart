@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:efatha_tv/utils/cached.iamge.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../shared/widgets/custom_text_field.dart';
@@ -26,11 +28,15 @@ class ProfileView extends StatelessWidget {
               Center(
                 child: Stack(
                   children: [
-                    const CircleAvatar(
-                      radius: 50,
-                      backgroundColor: Colors.grey,
-                      backgroundImage: NetworkImage(
-                        'https://i.pravatar.cc/150?u=',
+                    ClipRRect(
+                      borderRadius: BorderRadiusGeometry.circular(50),
+                      child: AppCachedImage(
+                        width: 80,
+                        height: 80,
+                        fit: BoxFit.cover,
+                        imageUrl:
+                            "https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg",
+                        errorWidget: Icon(Icons.person),
                       ),
                     ),
                     Positioned(
@@ -65,28 +71,46 @@ class ProfileView extends StatelessWidget {
                 style: GoogleFonts.outfit(fontSize: 12, color: Colors.grey),
               ),
               const SizedBox(height: 32),
-              const AppTextField(label: 'Name', hint: ''),
+              AppTextField(
+                label: 'Name',
+                hint: '',
+                fillColor: Colors.white,
+                borderColor: Colors.grey.shade200,
+              ),
               const SizedBox(height: 20),
-              const AppTextField(
+              AppTextField(
+                fillColor: Colors.white,
+                borderColor: Colors.grey.shade200,
                 label: 'Phone Number',
                 hint: '+255 768 234 567',
               ),
               const SizedBox(height: 20),
-              const AppTextField(
+              AppTextField(
+                fillColor: Colors.white,
+                borderColor: Colors.grey.shade200,
                 label: 'Select your gender',
                 hint: 'Male',
                 suffixIcon: Icon(Icons.arrow_drop_down, color: Colors.grey),
               ),
               const SizedBox(height: 20),
-              const AppTextField(
+              AppTextField(
+                fillColor: Colors.white,
+                borderColor: Colors.grey.shade200,
                 label: 'What is your Status/Host',
                 hint: 'Pastor',
                 suffixIcon: Icon(Icons.arrow_drop_down, color: Colors.grey),
               ),
               const SizedBox(height: 20),
-              const AppTextField(label: 'Email', hint: '@gmail.com'),
+              AppTextField(
+                label: 'Email',
+                hint: '@gmail.com',
+                fillColor: Colors.white,
+                borderColor: Colors.grey.shade200,
+              ),
               const SizedBox(height: 20),
-              const AppTextField(
+              AppTextField(
+                fillColor: Colors.white,
+                borderColor: Colors.grey.shade200,
                 label: 'Password',
                 hint: '********',
                 isObscured: true,

@@ -23,7 +23,8 @@ class ShopView extends StatelessWidget {
     };
     final products = [
       {
-        'title': 'The Morac Book 1',
+        'title':
+            'The Morac dsadddddddddddifhasofasnofhsaohffffffffffffffffffffffffffffffffffffffBook 1',
         'author': 'By Adam Smith',
         'price': '125.00',
         'old_price': '145.00',
@@ -48,11 +49,12 @@ class ShopView extends StatelessWidget {
       },
     ];
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Column(
           children: [
+            SizedBox(height: 10),
             ShopHeader(cartController: cartController),
             _buildSearchAnchor(),
             Expanded(

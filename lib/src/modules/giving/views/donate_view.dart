@@ -1,56 +1,70 @@
+import 'package:efatha_tv/src/modules/shop/views/app.text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:efatha_tv/src/modules/media/views/details/products_gallery_view.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import '../../index/controllers/index_controller.dart';
+import '../../home/views/home_view.dart';
+import '../../about/views/about_view.dart';
+import '../../media/views/media_view.dart';
+import '../../shop/views/shop_view.dart';
+import '../../auth/views/profile_view.dart';
+import '../../giving/views/giving_hub_view.dart';
+import '../../giving/views/donate_view.dart';
+import '../../giving/views/mobile_payment_view.dart';
+import '../../giving/views/global_giving_view.dart';
+import '../../giving/views/wire_transfer_view.dart';
+import '../../prayer/views/prayer_hub_view.dart';
+import '../../prayer/views/prayer_request_view.dart';
+import '../../prayer/views/prayer_wall_view.dart';
+import '../../prayer/views/salvation_view.dart';
+import '../../partners/views/partners_view.dart';
+import '../../partners/views/local_partner_view.dart';
+import '../../partners/views/international_partner_view.dart';
+import '../../contact/views/contact_view.dart';
+import '../../../shared/widgets/custom_app_bar.dart';
+import '../../../shared/widgets/custom_bottom_nav.dart';
 
 class DonateView extends StatelessWidget {
-  const DonateView({super.key});
+  DonateView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('DONATE', style: GoogleFonts.outfit(fontWeight: FontWeight.bold)),
-        centerTitle: true,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(115),
+        child: CustomAppBar(
+          userName: '',
+
+          onTranslateTap: () =>
+              Get.snackbar('Language', 'Language selection coming soon'),
+          onSearchTap: () =>
+              Get.snackbar('Search', 'Search feature coming soon'),
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [Colors.blue.shade900, Colors.blue.shade600]),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                   Text(
-                    'PARTNER WITH US NOW',
-                    style: GoogleFonts.outfit(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    'We invite you to partner with Efatha Ministry and help us spread the word of God globally. Your contributions make a significant impact in lives of many.',
-                    style: GoogleFonts.outfit(color: Colors.white70, fontSize: 14, height: 1.5),
-                  ),
-                ],
-              ),
+            AppText(
+              title: "PARTNER WITH US NOW",
+
+              fontSize: 17,
+              fontWeight: FontWeight.w700,
             ),
-            const SizedBox(height: 24),
-            Text(
-              'About Giving',
-              style: GoogleFonts.outfit(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
+
             const SizedBox(height: 12),
-            Text(
-              'Your generous support enables us to continue our mission of outreach, community support, and spiritual growth. We believe in transparency and every cent you give is directed towards ministry activities and aid programs.\n\n"Give, and it will be given to you. A good measure, pressed down, shaken together and running over, will be poured into your lap." - Luke 6:38',
-              style: GoogleFonts.outfit(fontSize: 14, color: Colors.black87, height: 1.6),
+            AppText(
+              title:
+                  "We welcome you to a life-changing opportunity to become a partner in sharing the Good News of Jesus Christ.\n\n"
+                  "Efatha TV's support is having a global impact. Efatha TV Partners are transforming lives around the clock. Our lives are the answer to somebody's question and the solution to somebody's problem. Every single day, across the earth, somebody steps into their destiny because of our obedience.\n\n"
+                  "Jesus said, \"Go,\" and that is what we are doing. But we realize it takes more than our anointing to do the job. It also takes your support, faith, prayers, and financial contributions.\n\n"
+                  "We understand the spiritual principle of synergy. We know that when we combine forces, the results are far greater than the mere addition of our individual strengths. This is why we invite you to partner with us.\n\n"
+                  "Support us on a regular basis by signing up to become an Efatha TV Partner today.",
             ),
-            const SizedBox(height: 32),
-            _buildInfoCard(Icons.verified_user, 'Secure Transaction', 'All donations are processed securely.'),
-            const SizedBox(height: 16),
-            _buildInfoCard(Icons.receipt_long, 'Tax Benefits', 'Your donations may be tax-deductible.'),
           ],
         ),
       ),
@@ -72,12 +86,62 @@ class DonateView extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, style: GoogleFonts.outfit(fontWeight: FontWeight.bold)),
-              Text(sub, style: GoogleFonts.outfit(fontSize: 12, color: Colors.grey)),
+              Text(
+                title,
+                style: GoogleFonts.outfit(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                sub,
+                style: GoogleFonts.outfit(fontSize: 12, color: Colors.grey),
+              ),
             ],
           ),
         ],
       ),
     );
+  }
+}
+
+void _handleCategoryNavigation(String category) {
+  switch (category) {
+    case 'Giving':
+      Get.to(() => GivingHubView());
+      break;
+    case 'Donate':
+      Get.to(() => DonateView());
+      break;
+    case 'Mobile Payment':
+      Get.to(() => MobilePaymentView());
+      break;
+    case 'Global Giving':
+      Get.to(() => GlobalGivingView());
+      break;
+    case 'Wire Transfer':
+      Get.to(() => WireTransferView());
+      break;
+    case 'Prayer':
+      Get.to(() => PrayerHubView());
+      break;
+    case 'Prayer Request':
+      Get.to(() => PrayerRequestView());
+      break;
+    case 'Prayer Wall':
+      Get.to(() => const PrayerWallView());
+      break;
+    case 'Salvation':
+      Get.to(() => SalvationView());
+      break;
+    case 'Partners':
+      Get.to(() => PartnersHubView());
+      break;
+    case 'Local Partner':
+      Get.to(() => const LocalPartnerView());
+      break;
+    case 'International Partner':
+      Get.to(() => const InternationalPartnerView());
+      break;
+    case 'Contact':
+      Get.to(() => const ContactView());
+      break;
   }
 }

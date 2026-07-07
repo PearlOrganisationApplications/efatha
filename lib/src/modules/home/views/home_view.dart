@@ -1,7 +1,10 @@
 import 'dart:ui';
 
+import 'package:efatha_tv/foteer.dart';
 import 'package:efatha_tv/src/modules/media/views/video.dart';
+import 'package:efatha_tv/src/modules/shop/views/app.text.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../controllers/home_controller.dart';
@@ -28,12 +31,16 @@ import '../../partners/views/partners_view.dart';
 import '../../partners/views/local_partner_view.dart';
 import '../../partners/views/international_partner_view.dart';
 import '../../contact/views/contact_view.dart';
-import '../../../shared/widgets/custom_app_bar.dart';
-import '../../../shared/widgets/custom_bottom_nav.dart';
 
 class HomeView extends StatelessWidget {
   HomeController controller = Get.put(HomeController());
   HomeView({super.key});
+  final ScrollController _programScrollController = ScrollController();
+  @override
+  void dispose() {
+    _programScrollController.dispose();
+    _programScrollController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,13 +67,14 @@ class HomeView extends StatelessWidget {
       return Column(
         crossAxisAlignment: .center,
         children: [
-          //    _buildCategoryRow(),
+          Gap(20),
           Expanded(
             child: SingleChildScrollView(
               controller: controller.scrollController,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // _buildCategoryRow(),
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(22),
@@ -77,37 +85,131 @@ class HomeView extends StatelessWidget {
                       child: CastrPlayerScreen(),
                     ),
                   ),
-                  const SizedBox(height: 24),
-                  const AppSectionHeader(title: 'OUR PROGRAMS'),
+                  Gap(12),
+
+                  Container(
+                    height: 200,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black),
+                            ),
+                            child: Column(
+                              children: [
+                                Icon(Icons.tv),
+                                AppText(title: "TV Programs"),
+                                AppText(
+                                  title:
+                                      "Our programs feature powerful preaching, teaching, and insightful discussions from renowned ministers, along with uplifting music, engaging talk shows, and much more.",
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black),
+                            ),
+                            child: Column(
+                              children: [
+                                Icon(Icons.tv),
+                                AppText(title: "TV Programs"),
+                                AppText(
+                                  title:
+                                      "Our programs feature powerful preaching, teaching, and insightful discussions from renowned ministers, along with uplifting music, engaging talk shows, and much more.",
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black),
+                            ),
+                            child: Column(
+                              children: [
+                                Icon(Icons.tv),
+                                AppText(title: "TV Programs"),
+                                AppText(
+                                  title:
+                                      "Our programs feature powerful preaching, teaching, and insightful discussions from renowned ministers, along with uplifting music, engaging talk shows, and much more.",
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
+                    child: Row(
+                      children: [
+                        // LEFT ARROW
+                        Text(
+                          "Our Programs",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.outfit(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+
+                        // RIGHT ARROW
+                      ],
+                    ),
+                  ),
                   const SizedBox(height: 12),
 
-                  // GridView — 3 columns, 2 rows
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: mockPrograms.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                            childAspectRatio: 0.60, // <-- yeh change karo
-                          ),
+                    child: SizedBox(
+                      height: 250,
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          const spacing = 16.0;
 
-                      itemBuilder: (context, index) => ProgramGridItem(
-                        program: mockPrograms[index],
-                        index: index,
+                          // Total width ko 3 equal cards me divide karo
+                          final cardWidth =
+                              (constraints.maxWidth - (spacing * 2)) / 3;
+
+                          return GridView.builder(
+                            controller: _programScrollController,
+                            scrollDirection: Axis.horizontal,
+                            physics: BouncingScrollPhysics(),
+                            itemCount: mockPrograms.length,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2, // 2 rows
+                                  crossAxisSpacing: spacing,
+                                  mainAxisSpacing: 12,
+                                  mainAxisExtent:
+                                      cardWidth, // 👈 Card width fix
+                                ),
+                            itemBuilder: (context, index) {
+                              return ProgramGridItem(
+                                program: mockPrograms[index],
+                                index: index,
+                              );
+                            },
+                          );
+                        },
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 32),
-                  const AppSectionHeader(
-                    title: 'EVENT HIGHLIGHTS',
-                    showActionButton: false,
-                  ),
+
                   Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16,
@@ -145,6 +247,7 @@ class HomeView extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 32),
+                  CustomFooter(),
                 ],
               ),
             ),
@@ -174,62 +277,47 @@ class HomeView extends StatelessWidget {
     ];
 
     return Obx(
-      () => AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
+      () => SizedBox(
+        height: 48,
 
-        child: ImageFiltered(
-          imageFilter: ImageFilter.blur(
-            sigmaX: controller.isBlur.value ? 5 : 0,
-            sigmaY: controller.isBlur.value ? 5 : 0,
-          ),
+        child: ListView.separated(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          scrollDirection: Axis.horizontal,
+          itemCount: categories.length,
 
-          child: Opacity(
-            opacity: controller.isBlur.value ? 0.6 : 1,
+          separatorBuilder: (context, index) => const SizedBox(width: 12),
 
-            child: SizedBox(
-              height: 48,
-
-              child: ListView.separated(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                scrollDirection: Axis.horizontal,
-                itemCount: categories.length,
-
-                separatorBuilder: (context, index) => const SizedBox(width: 12),
-
-                itemBuilder: (context, index) {
-                  return Center(
-                    child: InkWell(
-                      onTap: () {
-                        _handleCategoryNavigation(categories[index]);
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 6,
-                        ),
-
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: Colors.black12),
-                        ),
-
-                        child: Text(
-                          categories[index],
-
-                          style: GoogleFonts.outfit(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
+          itemBuilder: (context, index) {
+            return Center(
+              child: InkWell(
+                onTap: () {
+                  _handleCategoryNavigation(categories[index]);
                 },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 6,
+                  ),
+
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Colors.black12),
+                  ),
+
+                  child: Text(
+                    categories[index],
+
+                    style: GoogleFonts.outfit(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
+            );
+          },
         ),
       ),
     );
@@ -352,34 +440,34 @@ class HomeView extends StatelessWidget {
   void _handleCategoryNavigation(String category) {
     switch (category) {
       case 'Giving':
-        Get.to(() => const GivingHubView());
+        Get.to(() => GivingHubView());
         break;
       case 'Donate':
-        Get.to(() => const DonateView());
+        Get.to(() => DonateView());
         break;
       case 'Mobile Payment':
-        Get.to(() => const MobilePaymentView());
+        Get.to(() => MobilePaymentView());
         break;
       case 'Global Giving':
-        Get.to(() => const GlobalGivingView());
+        Get.to(() => GlobalGivingView());
         break;
       case 'Wire Transfer':
-        Get.to(() => const WireTransferView());
+        Get.to(() => WireTransferView());
         break;
       case 'Prayer':
-        Get.to(() => const PrayerHubView());
+        Get.to(() => PrayerHubView());
         break;
       case 'Prayer Request':
-        Get.to(() => const PrayerRequestView());
+        Get.to(() => PrayerRequestView());
         break;
       case 'Prayer Wall':
         Get.to(() => const PrayerWallView());
         break;
       case 'Salvation':
-        Get.to(() => const SalvationView());
+        Get.to(() => SalvationView());
         break;
       case 'Partners':
-        Get.to(() => const PartnersHubView());
+        Get.to(() => PartnersHubView());
         break;
       case 'Local Partner':
         Get.to(() => const LocalPartnerView());

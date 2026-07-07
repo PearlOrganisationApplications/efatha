@@ -1,97 +1,186 @@
+import 'package:efatha_tv/src/core/values/app_colors.dart';
+import 'package:efatha_tv/src/modules/shop/views/app.text.dart';
+import 'package:efatha_tv/src/modules/shop/views/btw.dart';
+import 'package:efatha_tv/src/shared/widgets/custom_text_field.dart';
+import 'package:efatha_tv/utils/cached.iamge.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:efatha_tv/src/modules/media/views/details/products_gallery_view.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import '../../index/controllers/index_controller.dart';
+import '../../home/views/home_view.dart';
+import '../../about/views/about_view.dart';
+import '../../media/views/media_view.dart';
+import '../../shop/views/shop_view.dart';
+import '../../auth/views/profile_view.dart';
+import '../../giving/views/giving_hub_view.dart';
+import '../../giving/views/donate_view.dart';
+import '../../giving/views/mobile_payment_view.dart';
+import '../../giving/views/global_giving_view.dart';
+import '../../giving/views/wire_transfer_view.dart';
+import '../../prayer/views/prayer_hub_view.dart';
+import '../../prayer/views/prayer_request_view.dart';
+import '../../prayer/views/prayer_wall_view.dart';
+import '../../prayer/views/salvation_view.dart';
+import '../../partners/views/partners_view.dart';
+import '../../partners/views/local_partner_view.dart';
+import '../../partners/views/international_partner_view.dart';
+import '../../contact/views/contact_view.dart';
+import '../../../shared/widgets/custom_app_bar.dart';
+import '../../../shared/widgets/custom_bottom_nav.dart';
 
 class SalvationView extends StatelessWidget {
-  const SalvationView({super.key});
+  SalvationView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('SALVATION', style: GoogleFonts.outfit(fontWeight: FontWeight.bold)),
-        centerTitle: true,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(115),
+        child: CustomAppBar(
+          userName: '',
+
+          onTranslateTap: () =>
+              Get.snackbar('Language', 'Language selection coming soon'),
+          onSearchTap: () =>
+              Get.snackbar('Search', 'Search feature coming soon'),
+        ),
       ),
       body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              height: 250,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/onboarding_hero.png'), // Placeholder
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Colors.black.withValues(alpha: 0.1), Colors.black.withValues(alpha: 0.8)],
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.08),
+                    blurRadius: 15,
+                    offset: const Offset(0, 6),
                   ),
-                ),
-                padding: const EdgeInsets.all(24),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Accept Jesus Christ Today',
-                      style: GoogleFonts.outfit(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'The greatest decision you will ever make.',
-                      style: GoogleFonts.outfit(color: Colors.white70, fontSize: 16),
-                    ),
-                  ],
-                ),
+                ],
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(24.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                   Text(
-                    'The Sinner\'s Prayer',
-                    style: GoogleFonts.outfit(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue.shade900),
+                  // AppText(
+                  //   title: "Prayer Request Information",
+                  //   fontSize: 18,
+                  //   fontWeight: FontWeight.w600,
+                  // ),
+                  AppText(
+                    title: "Accept Jesus Christ Today",
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.appcolor,
                   ),
                   const SizedBox(height: 16),
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: Colors.blue.shade50,
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Colors.blue.shade100),
-                    ),
-                    child: Text(
-                      '"Lord Jesus, I come to You today. I acknowledge that I am a sinner. I believe You died for my sins and rose again. I accept You as my Lord and personal Savior. Wash me with Your blood and write my name in the Book of Life. Amen."',
-                      style: GoogleFonts.outfit(fontSize: 15, fontStyle: FontStyle.italic, color: Colors.blue.shade900, height: 1.6),
-                      textAlign: TextAlign.center,
+
+                  AppText(
+                    title:
+                        "(Romans 10:9-10) If you declare with your mouth, “Jesus is Lord,” and believe in your heart that God raised him from the dead, you will be saved. 10 For it is with your heart that you believe and are justified, and it is with your mouth that you profess your faith and are saved",
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                    textAlign: TextAlign.justify,
+                  ),
+
+                  const SizedBox(height: 30),
+
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: SizedBox(
+                      height: 30,
+                      width: 140,
+                      child: AppButton(
+                        ContainerPadding: EdgeInsets.all(2),
+                        onPressed: () {},
+                        title: "LEARN MORE",
+                        radius: 20,
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 32),
-                  Text(
-                    'What Next?',
-                    style: GoogleFonts.outfit(fontSize: 18, fontWeight: FontWeight.bold),
+                ],
+              ),
+            ),
+            const SizedBox(height: 12),
+
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.08),
+                    blurRadius: 15,
+                    spreadRadius: 2,
+                    offset: const Offset(0, 6),
                   ),
-                  const SizedBox(height: 12),
-                  _buildNextStep('1. Read the Bible daily (Start with John).'),
-                  _buildNextStep('2. Find a Bible-believing church.'),
-                  _buildNextStep('3. Share your decision with someone.'),
-                  const SizedBox(height: 48),
+                ],
+                border: Border.all(color: Colors.grey.shade200),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Align(
+                    alignment: Alignment.center,
+                    child: AppText(
+                      color: AppColors.appcolor,
+                      title: "Congratulation",
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+
+                  const SizedBox(height: 16),
+                  AppText(
+                    textAlign: TextAlign.center,
+                    title:
+                        'Please help us by filling out the form below so that we can assist you further.as',
+                  ),
+                  const SizedBox(height: 16),
+
+                  AppTextField(label: "Address", hint: "Enter your Address"),
+                  const Gap(12),
+                  AppTextField(
+                    label: "Full Name",
+                    hint: "Enter your full name",
+                  ),
+                  const Gap(12),
+
+                  AppTextField(label: "Email", hint: "Enter your email"),
+                  const Gap(12),
+
+                  AppTextField(
+                    label: "Mobile Number",
+                    hint: "Enter your mobile number",
+                  ),
+                  const Gap(12),
+
+                  AppTextField(label: "Province", hint: "Province"),
+
+                  // const Gap(12),
+
+                  // AppTextField(
+                  //   label: "Prayer Text",
+                  //   hint: "Type your prayer request here",
+                  //   maxLines: 5, // if supported
+                  // ),
+                  const SizedBox(height: 24),
+
                   SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(
+                    child: AppButton(
+                      radius: 22,
                       onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue.shade700,
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 18),
-                      ),
-                      child: const Text('I HAVE PRAYED THIS PRAYER'),
+                      title: "SUBMIT",
                     ),
                   ),
                 ],
@@ -103,16 +192,103 @@ class SalvationView extends StatelessWidget {
     );
   }
 
-  Widget _buildNextStep(String text) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
+  Widget _buildInfoCard(IconData icon, String title, String sub) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade50,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.grey.shade200),
+      ),
       child: Row(
         children: [
-          const Icon(Icons.check_circle, color: Colors.green, size: 20),
-          const SizedBox(width: 12),
-          Text(text, style: GoogleFonts.outfit(fontSize: 14)),
+          Icon(icon, color: Colors.blue.shade700),
+          const SizedBox(width: 16),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: GoogleFonts.outfit(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                sub,
+                style: GoogleFonts.outfit(fontSize: 12, color: Colors.grey),
+              ),
+            ],
+          ),
         ],
       ),
     );
   }
+}
+
+void _handleCategoryNavigation(String category) {
+  switch (category) {
+    case 'Giving':
+      Get.to(() => GivingHubView());
+      break;
+    case 'Donate':
+      Get.to(() => DonateView());
+      break;
+    case 'Mobile Payment':
+      Get.to(() => MobilePaymentView());
+      break;
+    case 'Global Giving':
+      Get.to(() => GlobalGivingView());
+      break;
+    case 'Wire Transfer':
+      Get.to(() => WireTransferView());
+      break;
+    case 'Prayer':
+      Get.to(() => PrayerHubView());
+      break;
+    case 'Prayer Request':
+      Get.to(() => PrayerRequestView());
+      break;
+    case 'Prayer Wall':
+      Get.to(() => const PrayerWallView());
+      break;
+    case 'Salvation':
+      Get.to(() => SalvationView());
+      break;
+    case 'Partners':
+      Get.to(() => PartnersHubView());
+      break;
+    case 'Local Partner':
+      Get.to(() => const LocalPartnerView());
+      break;
+    case 'International Partner':
+      Get.to(() => const InternationalPartnerView());
+      break;
+    case 'Contact':
+      Get.to(() => const ContactView());
+      break;
+  }
+}
+
+Widget _buildCard({required String image, required String title}) {
+  return Card(
+    elevation: 3,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+    child: Padding(
+      padding: const EdgeInsets.all(12),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: Image.asset(
+              image,
+              height: 120,
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
+          ),
+          const SizedBox(height: 12),
+          AppText(title: title, fontSize: 16, fontWeight: FontWeight.w600),
+        ],
+      ),
+    ),
+  );
 }

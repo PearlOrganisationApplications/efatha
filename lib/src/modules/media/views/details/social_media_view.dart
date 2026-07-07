@@ -21,10 +21,10 @@ import 'package:get/get_navigation/src/extension_navigation.dart'
     show ExtensionSnackbar, GetNavigation;
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SocialMediaView extends StatelessWidget {
   SocialMediaView({super.key});
-  final controller = Get.find<IndexController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,15 +36,11 @@ class SocialMediaView extends StatelessWidget {
           // }
           return CustomAppBar(
             userName: '',
-            selectedCategory: controller.selectedCategory.value,
+
             onTranslateTap: () =>
                 Get.snackbar('Language', 'Language selection coming soon'),
             onSearchTap: () =>
                 Get.snackbar('Search', 'Search feature coming soon'),
-            onCategorySelected: (category) {
-              controller.updateCategory(category);
-              _handleCategoryNavigation(category);
-            },
           );
         }),
       ),
@@ -111,85 +107,122 @@ class SocialMediaView extends StatelessWidget {
   }
 
   Widget _buildSocialGrid() {
-    final platforms = [
-      {'name': '', 'icon': "assets/s1.png", 'color': Colors.blue.shade900},
-      {'name': '', 'icon': "assets/s2.png", 'color': Colors.pink},
-      {'name': '', 'icon': "assets/s3.png", 'color': Colors.green},
-      {'name': '', 'icon': "assets/s4.png", 'color': Colors.black},
-      {'name': '', 'icon': "assets/s5.png", 'color': Colors.red},
-      {'name': '', 'icon': "assets/s51.png", 'color': Colors.black87},
-      {'name': '', 'icon': "assets/s6.png", 'color': Colors.blue},
-      {'name': '', 'icon': "assets/s8.png", 'color': Colors.red.shade900},
+    final List<Map<String, dynamic>> socialPlatforms = [
+      {
+        "name": "",
+        "icon": "assets/s1.png",
+        "url": "https://www.facebook.com/efathatv",
+      },
+      {
+        "name": "",
+        "icon": "assets/s2.png",
+        "url": "https://www.instagram.com/efathatv/",
+      },
+      {
+        "name": "",
+        "icon": "assets/s3.png",
+        "url": "https://www.whatsapp.com/channel/0029VaDPZN0HgZWUpMiqko1V",
+      },
+      {
+        "name": "YouTube",
+        "icon": "assets/s4.png",
+        "url": "https://www.youtube.com/@EFATHA_TV",
+      },
+      {
+        "name": "",
+        "icon": "assets/s5.png",
+        "url": "https://www.tiktok.com/@efathatv",
+      },
+      {
+        "name": "",
+        "icon": "assets/s51.png",
+        "url": "https://x.com/i/flow/login?redirect_after_login=%2Fefathatv",
+      },
+      {"name": "", "icon": "assets/s6.png", "url": "https://t.me/efathatv"},
+      {
+        "name": "",
+        "icon": "assets/s8.png",
+        "url":
+            "https://open.spotify.com/show/6vQt3iR1XtKCwLGj8FsuV8?si=lhIoit5WRgqmqf8XFq5PRw",
+      },
     ];
 
     return Wrap(
       spacing: 24,
       runSpacing: 24,
       alignment: WrapAlignment.center,
-      children: platforms.map((p) => _buildPlatformIcon(p)).toList(),
+      children: socialPlatforms.map((p) => _buildSocialItem(p)).toList(),
     );
   }
 
-  Widget _buildPlatformIcon(Map<String, dynamic> platform) {
-    return Column(
-      children: [
-        Container(
-          width: 64,
-          height: 64,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 10,
-                offset: const Offset(0, 4),
-              ),
-            ],
-            border: Border.all(color: Colors.grey.shade100),
+  Widget _buildSocialItem(Map<String, dynamic> platform) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(50),
+      onTap: () => _launchUrl(platform['url']),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 64,
+            height: 64,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 10,
+                  offset: Offset(0, 4),
+                ),
+              ],
+              border: Border.all(color: Colors.grey.shade100),
+            ),
+            child: Image.asset(platform['icon'], fit: BoxFit.contain),
           ),
-          child: Image.asset(platform['icon'] as String),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          platform['name'] as String,
-          style: GoogleFonts.outfit(fontSize: 11, fontWeight: FontWeight.w500),
-        ),
-      ],
+          const SizedBox(height: 8),
+          Text(
+            platform['name'],
+            style: GoogleFonts.outfit(
+              fontSize: 11,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
   void _handleCategoryNavigation(String category) {
     switch (category) {
       case 'Giving':
-        Get.to(() => const GivingHubView());
+        Get.to(() => GivingHubView());
         break;
       case 'Donate':
-        Get.to(() => const DonateView());
+        Get.to(() => DonateView());
         break;
       case 'Mobile Payment':
-        Get.to(() => const MobilePaymentView());
+        Get.to(() => MobilePaymentView());
         break;
       case 'Global Giving':
-        Get.to(() => const GlobalGivingView());
+        Get.to(() => GlobalGivingView());
         break;
       case 'Wire Transfer':
-        Get.to(() => const WireTransferView());
+        Get.to(() => WireTransferView());
         break;
       case 'Prayer':
-        Get.to(() => const PrayerHubView());
+        Get.to(() => PrayerHubView());
         break;
       case 'Prayer Request':
-        Get.to(() => const PrayerRequestView());
+        Get.to(() => PrayerRequestView());
         break;
       case 'Prayer Wall':
         Get.to(() => const PrayerWallView());
         break;
       case 'Salvation':
-        Get.to(() => const SalvationView());
+        Get.to(() => SalvationView());
         break;
       case 'Partners':
-        Get.to(() => const PartnersHubView());
+        Get.to(() => PartnersHubView());
         break;
       case 'Local Partner':
         Get.to(() => const LocalPartnerView());
@@ -200,6 +233,14 @@ class SocialMediaView extends StatelessWidget {
       case 'Contact':
         Get.to(() => const ContactView());
         break;
+    }
+  }
+
+  Future<void> _launchUrl(String url) async {
+    final uri = Uri.parse(url);
+
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
     }
   }
 }

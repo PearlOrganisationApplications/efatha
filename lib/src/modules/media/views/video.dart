@@ -21,7 +21,7 @@ class _CastrPlayerScreenState extends State<CastrPlayerScreen> {
       )
       ..loadRequest(
         Uri.parse(
-          'https://player.castr.com/d_ad1609f0374111f0a0869d26a7445c29',
+          'https://player.castr.com/live_dda01f6018e511ee95c20d9171d38946',
         ),
       );
   }

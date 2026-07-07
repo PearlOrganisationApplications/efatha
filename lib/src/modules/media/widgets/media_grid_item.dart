@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MediaGridItem extends StatelessWidget {
@@ -41,7 +42,7 @@ class MediaGridItem extends StatelessWidget {
               ),
               child: Image.asset(icon),
             ),
-            const SizedBox(height: 12),
+            Gap(5),
             Text(
               title,
               style: GoogleFonts.outfit(

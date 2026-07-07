@@ -2,6 +2,8 @@ import 'package:efatha_tv/src/modules/index/controllers/index_controller.dart';
 import 'package:efatha_tv/src/modules/media/views/media.cntrl.dart';
 import 'package:efatha_tv/src/modules/media/views/paid.show.dart';
 import 'package:efatha_tv/src/modules/media/views/video.dart';
+import 'package:efatha_tv/src/shared/widgets/custom_app_bar.dart'
+    show IndexController;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
@@ -23,12 +25,12 @@ class MediaView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
       child: Column(
         children: [
           Container(
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(22)),
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            // padding: const EdgeInsets.symmetric(horizontal: 16),
             child: ClipRRect(
               borderRadius: BorderRadiusGeometry.circular(6),
               child: CastrPlayerScreen(),
@@ -181,7 +183,7 @@ class MediaView extends StatelessWidget {
       {
         'title': 'Podcast',
         'icon': "assets/m2.png",
-        'onTap': () => Get.to(() => const PodcastGalleryView()),
+        'onTap': () => Get.to(() => PodcastGalleryView()),
       },
       {
         'title': 'Social Media',
@@ -210,7 +212,7 @@ class MediaView extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
-        crossAxisSpacing: 0,
+        crossAxisSpacing: 11,
         mainAxisSpacing: 16,
         childAspectRatio: 0.80,
       ),
