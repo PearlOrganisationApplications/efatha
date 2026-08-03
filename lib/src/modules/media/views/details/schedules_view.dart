@@ -42,19 +42,14 @@ class SchedulesView extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(115),
-        child: Obx(() {
-          // if (controller.currentIndex == 3 || controller.currentIndex == 4) {
-          //   return const SizedBox.shrink();
-          // }
-          return CustomAppBar(
-            userName: '',
+        child: CustomAppBar(
+          userName: '',
 
-            onTranslateTap: () =>
-                Get.snackbar('Language', 'Language selection coming soon'),
-            onSearchTap: () =>
-                Get.snackbar('Search', 'Search feature coming soon'),
-          );
-        }),
+          onTranslateTap: () =>
+              Get.snackbar('Language', 'Language selection coming soon'),
+          onSearchTap: () =>
+              Get.snackbar('Search', 'Search feature coming soon'),
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:efatha_tv/src/modules/home/widgets/video.vlm.dart';
 import 'package:efatha_tv/src/modules/media/views/video.reuabale.dart';
 import 'package:efatha_tv/web.view.dart';
@@ -72,18 +74,8 @@ class ProgramGridItem extends StatelessWidget {
         Get.to(() => VideoPlayerScreen(videoUrl: url));
       },
       borderRadius: BorderRadius.circular(14),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(14),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.08),
-              blurRadius: 8,
-              offset: const Offset(0, 3),
-            ),
-          ],
-        ),
+      child: Card(
+        elevation: 4,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -93,93 +85,165 @@ class ProgramGridItem extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: const BorderRadius.vertical(
                   top: Radius.circular(14),
+                  bottom: Radius.circular(14),
                 ),
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    // Image.network(
-                    //   program['image']!,
-                    //   fit: BoxFit.cover,
-                    //   errorBuilder: (context, error, stackTrace) => Container(
-                    //     color: Colors.grey.shade100,
-                    //     child: const Icon(
-                    //       Icons.broken_image_rounded,
-                    //       color: Colors.grey,
-                    //       size: 28,
-                    //     ),
-                    //   ),
-                    // ),
-                    Image.asset(
-                      program['image']!,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) => Container(
-                        color: Colors.grey.shade100,
-                        child: const Icon(
-                          Icons.broken_image_rounded,
-                          color: Colors.grey,
-                          size: 28,
-                        ),
-                      ),
+                child: Image.asset(
+                  program['image']!,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => Container(
+                    color: Colors.grey.shade100,
+                    child: const Icon(
+                      Icons.broken_image_rounded,
+                      color: Colors.grey,
+                      size: 28,
                     ),
-
-                    // Dark gradient at bottom
-                    Positioned.fill(
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              Colors.transparent,
-                              Colors.black.withValues(alpha: 0.3),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    // Play icon
-                    const Positioned(
-                      bottom: 6,
-                      right: 6,
-                      child: Icon(
-                        Icons.play_circle_filled_rounded,
-                        color: Colors.white,
-                        size: 22,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ),
 
             // Title — bottom
-            Expanded(
-              flex: 1,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.vertical(
-                    bottom: Radius.circular(14),
-                  ),
-                ),
-                child: Center(
-                  child: Text(
-                    program['title']!,
-                    style: GoogleFonts.outfit(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87,
-                    ),
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-              ),
-            ),
+            // Expanded(
+            //   flex: 1,
+            //   child: Container(
+            //     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            //     decoration: const BoxDecoration(
+            //       color: Colors.white,
+            //       borderRadius: BorderRadius.vertical(
+            //         bottom: Radius.circular(14),
+            //       ),
+            //     ),
+            //     child: Center(
+            //       child: Text(
+            //         program['title']!,
+            //         style: GoogleFonts.outfit(
+            //           fontSize: 11,
+            //           fontWeight: FontWeight.w600,
+            //           color: Colors.black87,
+            //         ),
+            //         textAlign: TextAlign.center,
+            //         maxLines: 2,
+            //         overflow: TextOverflow.ellipsis,
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ProgramAutoSlider extends StatefulWidget {
+  final List<List<int>>
+  columns; // each entry = list of program indices in that column
+  final List<Map<String, dynamic>> programs;
+  final double cardWidth;
+  final double spacing;
+  final Duration interval;
+
+  const ProgramAutoSlider({
+    super.key,
+    required this.columns,
+    required this.programs,
+    required this.cardWidth,
+    required this.spacing,
+    this.interval = const Duration(seconds: 3),
+  });
+
+  @override
+  State<ProgramAutoSlider> createState() => _ProgramAutoSliderState();
+}
+
+class _ProgramAutoSliderState extends State<ProgramAutoSlider> {
+  late final PageController _controller;
+  Timer? _timer;
+
+  static const int _loopMultiplier = 5000;
+  late int _initialPage;
+
+  @override
+  void initState() {
+    super.initState();
+
+    final columnCount = widget.columns.length;
+    _initialPage = columnCount == 0 ? 0 : (_loopMultiplier ~/ 2) * columnCount;
+
+    _controller = PageController(
+      viewportFraction:
+          (widget.cardWidth + widget.spacing) /
+          (widget.cardWidth * 2 + widget.spacing), // shows ~1.something columns
+      initialPage: _initialPage,
+    );
+
+    _startAutoSlide();
+  }
+
+  void _startAutoSlide() {
+    if (widget.columns.isEmpty) return;
+    _timer = Timer.periodic(widget.interval, (_) {
+      if (!_controller.hasClients) return;
+      final nextPage =
+          (_controller.page ?? _initialPage.toDouble()).round() + 1;
+      _controller.animateToPage(
+        nextPage,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOutCubic,
+      );
+    });
+  }
+
+  void _pauseAutoSlide() => _timer?.cancel();
+
+  void _resumeAutoSlide() {
+    _timer?.cancel();
+    _startAutoSlide();
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final columnCount = widget.columns.length;
+    if (columnCount == 0) return const SizedBox();
+
+    return Listener(
+      onPointerDown: (_) => _pauseAutoSlide(),
+      onPointerUp: (_) => _resumeAutoSlide(),
+      onPointerCancel: (_) => _resumeAutoSlide(),
+      child: PageView.builder(
+        controller: _controller,
+        itemCount: columnCount * _loopMultiplier,
+        itemBuilder: (context, index) {
+          final realColIndex = index % columnCount;
+          final colIndices = widget.columns[realColIndex];
+
+          return Padding(
+            padding: EdgeInsets.only(right: widget.spacing),
+            child: SizedBox(
+              width: widget.cardWidth,
+              child: Column(
+                children: [
+                  for (int i = 0; i < colIndices.length; i++) ...[
+                    Expanded(
+                      child: ProgramGridItem(
+                        program: widget.programs[colIndices[i]],
+                        index: colIndices[i],
+                      ),
+                    ),
+                    if (i != colIndices.length - 1) const SizedBox(height: 12),
+                  ],
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

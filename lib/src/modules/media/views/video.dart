@@ -29,7 +29,7 @@ class _CastrPlayerScreenState extends State<CastrPlayerScreen> {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 16 / 9,
+      aspectRatio: 16 / 9, // Landscape
       child: WebViewWidget(controller: _controller),
     );
   }

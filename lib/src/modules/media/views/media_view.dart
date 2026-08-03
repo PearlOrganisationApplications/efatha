@@ -3,7 +3,7 @@ import 'package:efatha_tv/src/modules/media/views/media.cntrl.dart';
 import 'package:efatha_tv/src/modules/media/views/paid.show.dart';
 import 'package:efatha_tv/src/modules/media/views/video.dart';
 import 'package:efatha_tv/src/shared/widgets/custom_app_bar.dart'
-    show IndexController;
+    show IndexController, CustomAppBar;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
@@ -23,83 +23,88 @@ class MediaView extends StatelessWidget {
   IndexController _indexController = Get.find<IndexController>();
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
-      child: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(22)),
-            // padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: ClipRRect(
-              borderRadius: BorderRadiusGeometry.circular(6),
-              child: CastrPlayerScreen(),
+    return Scaffold(
+      appBar: CustomAppBar(isFromHome: true),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(22),
+              ),
+              // padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: ClipRRect(
+                borderRadius: BorderRadiusGeometry.circular(6),
+                child: CastrPlayerScreen(),
+              ),
             ),
-          ),
 
-          //CastrPlayerScreen(),
-          // _buildGradientBanner(context, 'Live Stream', () {
-          //   _indexController.changeIndex(0);
-          // }),
-          // AspectRatio(
-          //   aspectRatio: 16 / 9,A
-          //   child: Video(controller: _mediaController.controller!),
-          // ),
-          // // StreamBuilder(
-          //   stream: _mediaController.player.stream.playing,
-          //   builder: (context, snapshot) {
-          //     final isPlaying = snapshot.data ?? false;
-          //     return Row(
-          //       mainAxisAlignment: MainAxisAlignment.center,
-          //       children: [
-          //         IconButton(
-          //           iconSize: 48,
-          //           icon: Icon(Icons.pause_circle, color: Colors.white),
-          //           onPressed: () => _mediaController.player.playOrPause(),
-          //         ),
-          //         const SizedBox(width: 20),
-          //         IconButton(
-          //           iconSize: 48,
-          //           icon: const Icon(Icons.refresh, color: Colors.white),
-          //           onPressed: () => _mediaController.player.open(
-          //             Media(_mediaController.streamUrl),
-          //           ), // 🔄 Restart
-          //         ),
-          //       ],
-          //     );
-          //   },
-          // ),
-          // const SizedBox(height: 10),
+            //CastrPlayerScreen(),
+            // _buildGradientBanner(context, 'Live Stream', () {
+            //   _indexController.changeIndex(0);
+            // }),
+            // AspectRatio(
+            //   aspectRatio: 16 / 9,A
+            //   child: Video(controller: _mediaController.controller!),
+            // ),
+            // // StreamBuilder(
+            //   stream: _mediaController.player.stream.playing,
+            //   builder: (context, snapshot) {
+            //     final isPlaying = snapshot.data ?? false;
+            //     return Row(
+            //       mainAxisAlignment: MainAxisAlignment.center,
+            //       children: [
+            //         IconButton(
+            //           iconSize: 48,
+            //           icon: Icon(Icons.pause_circle, color: Colors.white),
+            //           onPressed: () => _mediaController.player.playOrPause(),
+            //         ),
+            //         const SizedBox(width: 20),
+            //         IconButton(
+            //           iconSize: 48,
+            //           icon: const Icon(Icons.refresh, color: Colors.white),
+            //           onPressed: () => _mediaController.player.open(
+            //             Media(_mediaController.streamUrl),
+            //           ), // 🔄 Restart
+            //         ),
+            //       ],
+            //     );
+            //   },
+            // ),
+            // const SizedBox(height: 10),
 
-          // // ✅ Buffering indicator
-          // StreamBuilder(
-          //   stream: _mediaController.player.stream.buffering,
-          //   builder: (context, snapshot) {
-          //     final isBuffering = snapshot.data ?? false;
-          //     if (isBuffering) {
-          //       return const Column(
-          //         children: [
-          //           CircularProgressIndicator(color: Colors.white),
-          //           SizedBox(height: 8),
-          //           Text('Buffering...', style: TextStyle(color: Colors.white)),
-          //         ],
-          //       );
-          //     }
-          //     return const SizedBox.shrink();
-          //   },
-          // ),
+            // // ✅ Buffering indicator
+            // StreamBuilder(
+            //   stream: _mediaController.player.stream.buffering,
+            //   builder: (context, snapshot) {
+            //     final isBuffering = snapshot.data ?? false;
+            //     if (isBuffering) {
+            //       return const Column(
+            //         children: [
+            //           CircularProgressIndicator(color: Colors.white),
+            //           SizedBox(height: 8),
+            //           Text('Buffering...', style: TextStyle(color: Colors.white)),
+            //         ],
+            //       );
+            //     }
+            //     return const SizedBox.shrink();
+            //   },
+            // ),
 
-          // const SizedBox(height: 20),
-          const SizedBox(height: 32),
-          _buildMediaGrid(context),
-          const SizedBox(height: 32),
-          // _buildGradientBanner(
-          //   context,
-          //   'Efatha Shop',
-          //   () => Get.to(() => const ProductsGalleryView()),
-          // ),
-          const SizedBox(height: 20),
-        ],
+            // const SizedBox(height: 20),
+            const SizedBox(height: 32),
+            _buildMediaGrid(context),
+            const SizedBox(height: 32),
+            // _buildGradientBanner(
+            //   context,
+            //   'Efatha Shop',
+            //   () => Get.to(() => const ProductsGalleryView()),
+            // ),
+            const SizedBox(height: 20),
+          ],
+        ),
       ),
     );
   }

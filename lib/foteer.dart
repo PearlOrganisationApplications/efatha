@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 class CustomFooter extends StatelessWidget {
   const CustomFooter({super.key});
@@ -20,8 +21,8 @@ class CustomFooter extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Efatha TV",
+                Text(
+                  'efatha_tv'.tr,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 22,
@@ -31,8 +32,9 @@ class CustomFooter extends StatelessWidget {
 
                 const SizedBox(height: 15),
 
-                const Text(
-                  "Help Efatha Media to provide powerful Christian programming to believers around the world.",
+                Text(
+                  'footer_description'.tr,
+
                   style: TextStyle(
                     color: Colors.white70,
                     height: 1.6,
@@ -63,60 +65,17 @@ class CustomFooter extends StatelessWidget {
             ),
           ),
 
-          _footerSection("Useful Links", [
-            "Privacy Policy",
-            "Terms & Conditions",
-            "Latest News",
+          _footerSection('useful_links'.tr, [
+            'privacy_policy'.tr,
+            'terms_conditions'.tr,
+            'latest_news'.tr,
           ]),
-
-          _footerSection("Join US", [
-            "Giving",
-            "Programs",
-            "Prayer Request",
-            "Broadcasting",
+          _footerSection('join_us'.tr, [
+            'giving'.tr,
+            'programs'.tr,
+            'prayer_request'.tr,
+            'broadcasting'.tr,
           ]),
-
-          SizedBox(
-            width: 260,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  "Contact US",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-
-                SizedBox(height: 18),
-
-                Text("EFATHA TV", style: TextStyle(color: Colors.white70)),
-
-                SizedBox(height: 8),
-
-                Text(
-                  "P.O. BOX 9392,\nDar es Salaam, Tanzania",
-                  style: TextStyle(color: Colors.white70, height: 1.6),
-                ),
-
-                SizedBox(height: 10),
-
-                Text(
-                  "Mobile: +255 787 432710, +255 756866217",
-                  style: TextStyle(color: Colors.white70),
-                ),
-
-                SizedBox(height: 8),
-
-                Text(
-                  "Email: info@efathatv.com",
-                  style: TextStyle(color: Colors.white70),
-                ),
-              ],
-            ),
-          ),
         ],
       ),
     );

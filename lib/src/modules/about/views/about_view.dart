@@ -1,4 +1,6 @@
+import 'package:efatha_tv/src/shared/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AboutView extends StatelessWidget {
@@ -6,89 +8,92 @@ class AboutView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Center(
-            child: Text(
-              'About Us',
-              style: GoogleFonts.outfit(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
+    return Scaffold(
+      appBar: CustomAppBar(isFromHome: true),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: Text(
+                'about_us'.tr,
+                style: GoogleFonts.outfit(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 32),
+            const SizedBox(height: 32),
 
-          Text(
-            'Efatha TV',
-            style: GoogleFonts.outfit(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.blue.shade700,
-            ),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            'Owned by Efatha Church in Tanzania, is a television network with a mission to share the transformative message of Jesus Christ. With a history of planting over 1,000 churches globally, Efatha Church has over 15 years of experience in media. The network emphasizes healing, deliverance, and hope, operating on Christian principles to serve the community and reflect God\'s love.',
-            style: GoogleFonts.outfit(
-              fontSize: 14,
-              color: Colors.black54,
-              height: 1.6,
-            ),
-          ),
-
-          const SizedBox(height: 32),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: Image.asset(
-              'assets/images/group.png',
-              width: double.infinity,
-              height: 220,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) => Container(
-                height: 220,
-                color: Colors.grey.shade200,
-                child: const Icon(Icons.people, size: 50, color: Colors.grey),
-              ),
-            ),
-          ),
-
-          const SizedBox(height: 32),
-          Center(
-            child: Text(
-              'EFATHA TV',
+            Text(
+              'Efatha TV',
               style: GoogleFonts.outfit(
-                fontSize: 16,
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.blue.shade700,
-                letterSpacing: 1.2,
               ),
             ),
-          ),
-          const SizedBox(height: 16),
-          _buildBulletPoints(),
-
-          const SizedBox(height: 48),
-          Center(
-            child: Text(
-              'EFATHA TV HOD',
+            const SizedBox(height: 12),
+            Text(
+              'Owned by Efatha Church in Tanzania, is a television network with a mission to share the transformative message of Jesus Christ. With a history of planting over 1,000 churches globally, Efatha Church has over 15 years of experience in media. The network emphasizes healing, deliverance, and hope, operating on Christian principles to serve the community and reflect God\'s love.',
               style: GoogleFonts.outfit(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
-                letterSpacing: 1.2,
+                fontSize: 14,
+                color: Colors.black54,
+                height: 1.6,
               ),
             ),
-          ),
-          const SizedBox(height: 24),
-          _buildHodGrid(),
-          const SizedBox(height: 40),
-        ],
+
+            const SizedBox(height: 32),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Image.asset(
+                'assets/images/group.png',
+                width: double.infinity,
+                height: 220,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) => Container(
+                  height: 220,
+                  color: Colors.grey.shade200,
+                  child: const Icon(Icons.people, size: 50, color: Colors.grey),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 32),
+            Center(
+              child: Text(
+                'EFATHA TV',
+                style: GoogleFonts.outfit(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue.shade700,
+                  letterSpacing: 1.2,
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            _buildBulletPoints(),
+
+            const SizedBox(height: 48),
+            Center(
+              child: Text(
+                'EFATHA TV HOD',
+                style: GoogleFonts.outfit(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                  letterSpacing: 1.2,
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
+            _buildHodGrid(),
+            const SizedBox(height: 40),
+          ],
+        ),
       ),
     );
   }

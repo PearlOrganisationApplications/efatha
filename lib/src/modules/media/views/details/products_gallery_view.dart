@@ -17,43 +17,46 @@ class ProductsGalleryView extends StatelessWidget {
   final controller = Get.find<IndexController>();
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Gap(20),
-        AppText(title: "Products", fontSize: 14, fontWeight: FontWeight.w700),
-        Expanded(
-          child: GridView.count(
-            padding: const EdgeInsets.all(24),
-            crossAxisCount: 2,
-            crossAxisSpacing: 20,
-            mainAxisSpacing: 20,
-            childAspectRatio: 0.9,
-            children: [
-              InkWell(
-                onTap: () {
-                  Get.to(() => ShopView());
-                },
-                child: _buildCategoryCard(
-                  'BOOKS',
-                  "assets/b1.png",
-                  Colors.blue.shade900,
+    return Scaffold(
+      appBar: CustomAppBar(isFromHome: true),
+      body: Column(
+        children: [
+          Gap(20),
+          AppText(title: "Products", fontSize: 14, fontWeight: FontWeight.w700),
+          Expanded(
+            child: GridView.count(
+              padding: const EdgeInsets.all(24),
+              crossAxisCount: 2,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 20,
+              childAspectRatio: 0.9,
+              children: [
+                InkWell(
+                  onTap: () {
+                    Get.to(() => ShopView());
+                  },
+                  child: _buildCategoryCard(
+                    'BOOKS',
+                    "assets/b1.png",
+                    Colors.blue.shade900,
+                  ),
                 ),
-              ),
-              _buildCategoryCard(
-                'Audio',
-                "assets/b2.png",
-                Colors.orange.shade800,
-              ),
-              _buildCategoryCard('VOD', "assets/b3.png", Colors.red.shade800),
-              _buildCategoryCard(
-                'EFATHA PRODUCTS',
-                "assets/b1.png",
-                Colors.teal.shade700,
-              ),
-            ],
+                _buildCategoryCard(
+                  'Audio',
+                  "assets/b2.png",
+                  Colors.orange.shade800,
+                ),
+                _buildCategoryCard('VOD', "assets/b3.png", Colors.red.shade800),
+                _buildCategoryCard(
+                  'EFATHA PRODUCTS',
+                  "assets/b1.png",
+                  Colors.teal.shade700,
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

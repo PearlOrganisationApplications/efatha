@@ -44,8 +44,10 @@ class MediaGridItem extends StatelessWidget {
             ),
             Gap(5),
             Text(
+              overflow: .ellipsis,
               title,
               style: GoogleFonts.outfit(
+                textStyle: TextStyle(),
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
                 color: Colors.black87,

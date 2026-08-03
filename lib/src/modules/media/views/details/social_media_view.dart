@@ -16,10 +16,10 @@ import 'package:efatha_tv/src/shared/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
+
 import 'package:get/get_navigation/src/extension_navigation.dart'
     show ExtensionSnackbar, GetNavigation;
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -30,19 +30,18 @@ class SocialMediaView extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(115),
-        child: Obx(() {
-          // if (controller.currentIndex == 3 || controller.currentIndex == 4) {
-          //   return const SizedBox.shrink();
-          // }
-          return CustomAppBar(
-            userName: '',
+        child:
+            // if (controller.currentIndex == 3 || controller.currentIndex == 4) {
+            //   return const SizedBox.shrink();
+            // }
+            CustomAppBar(
+              userName: '',
 
-            onTranslateTap: () =>
-                Get.snackbar('Language', 'Language selection coming soon'),
-            onSearchTap: () =>
-                Get.snackbar('Search', 'Search feature coming soon'),
-          );
-        }),
+              onTranslateTap: () =>
+                  Get.snackbar('Language', 'Language selection coming soon'),
+              onSearchTap: () =>
+                  Get.snackbar('Search', 'Search feature coming soon'),
+            ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),

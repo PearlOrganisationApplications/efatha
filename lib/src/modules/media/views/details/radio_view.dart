@@ -184,15 +184,13 @@ class _RadioViewState extends State<RadioView> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(115),
-        child: Obx(
-          () => CustomAppBar(
-            userName: '',
+        child: CustomAppBar(
+          userName: '',
 
-            onTranslateTap: () =>
-                Get.snackbar('Language', 'Language selection coming soon'),
-            onSearchTap: () =>
-                Get.snackbar('Search', 'Search feature coming soon'),
-          ),
+          onTranslateTap: () =>
+              Get.snackbar('Language', 'Language selection coming soon'),
+          onSearchTap: () =>
+              Get.snackbar('Search', 'Search feature coming soon'),
         ),
       ),
       body: Padding(

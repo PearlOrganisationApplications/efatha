@@ -43,25 +43,26 @@ class DashboardView extends StatelessWidget {
     return AnnotatedRegion(
       value: SystemUiOverlayStyle(statusBarColor: Colors.white),
       child: SafeArea(
-        top: false,
+        top: true,
         child: Scaffold(
-          backgroundColor: Colors.white,
-          appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(115),
-            child: Obx(() {
-              if (controller.currentIndex == 4) {
-                return const SizedBox.shrink();
-              }
-              return CustomAppBar(
-                userName: '',
-                isFromHome: true,
-                onTranslateTap: () =>
-                    Get.snackbar('Language', 'Language selection coming soon'),
-                onSearchTap: () =>
-                    Get.snackbar('Search', 'Search feature coming soon'),
-              );
-            }),
-          ),
+          backgroundColor: const Color.fromARGB(245, 255, 255, 255),
+          // appBar: (controller.currentIndex != 0 && controller.currentIndex != 4)
+          //     ? PreferredSize(
+          //         preferredSize: const Size.fromHeight(115),
+          //         child: Obx(
+          //           () => CustomAppBar(
+          //             userName: '',
+          //             isFromHome: true,
+          //             onTranslateTap: () => Get.snackbar(
+          //               'Language',
+          //               'Language selection coming soon',
+          //             ),
+          //             onSearchTap: () =>
+          //                 Get.snackbar('Search', 'Search feature coming soon'),
+          //           ),
+          //         ),
+          //       )
+          //     : null,
           body: Obx(
             () =>
                 IndexedStack(index: controller.currentIndex, children: screens),

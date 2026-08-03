@@ -48,6 +48,7 @@ dependencies:
   persistent_bottom_nav_bar_v2: ^6.3.2
   circle_nav_bar: ^2.2.0
   curved_labeled_navigation_bar: ^2.0.6
+  carousel_slider: ^5.1.2
 
 dev_dependencies:
   flutter_test:

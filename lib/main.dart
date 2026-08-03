@@ -1,6 +1,6 @@
+import 'package:efatha_tv/lan.support.dart';
 import 'package:efatha_tv/src/core/utils/initial_binding.dart';
 import 'package:efatha_tv/src/modules/auth/controllers/auth_controller.dart';
-import 'package:efatha_tv/src/modules/index/controllers/index_controller.dart';
 import 'package:efatha_tv/src/routes/app_routes.dart';
 import 'package:efatha_tv/src/shared/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +32,11 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       color: Colors.white,
       title: 'Efatha TV',
+
+      translations: AppTranslations(),
+      locale: const Locale('en', 'US'),
+      fallbackLocale: const Locale('en', 'US'),
+
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.splash,
       getPages: AppPages.routes,

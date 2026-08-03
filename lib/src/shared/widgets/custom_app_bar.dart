@@ -49,31 +49,43 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     _handleCategoryNavigation(category, isFromHome);
   }
 
-  void _handleCategoryNavigation(String category, bool fromHome) {
-    print(isFromHome.toString());
+  void _handleCategoryNavigation(String category, bool fromHome) async {
     switch (category) {
       case 'Giving':
-        fromHome
-            ? Get.to(() => GivingHubView())
-            : Get.off(() => GivingHubView());
+        if (fromHome) {
+          await Get.to(() => GivingHubView());
+          // yaha wapas aaye matlab back press hua
+          controller.selectedCategory.value = '';
+        } else {
+          Get.off(() => GivingHubView());
+        }
         break;
 
       case 'Prayer':
-        fromHome
-            ? Get.to(() => PrayerHubView())
-            : Get.off(() => PrayerHubView());
+        if (fromHome) {
+          await Get.to(() => PrayerHubView());
+          controller.selectedCategory.value = '';
+        } else {
+          Get.off(() => PrayerHubView());
+        }
         break;
 
       case 'Partners':
-        fromHome
-            ? Get.to(() => PartnersHubView())
-            : Get.off(() => PartnersHubView());
+        if (fromHome) {
+          await Get.to(() => PartnersHubView());
+          controller.selectedCategory.value = '';
+        } else {
+          Get.off(() => PartnersHubView());
+        }
         break;
 
       case 'Contact':
-        fromHome
-            ? Get.to(() => const ContactView())
-            : Get.off(() => const ContactView());
+        if (fromHome) {
+          await Get.to(() => const ContactView());
+          controller.selectedCategory.value = '';
+        } else {
+          Get.off(() => const ContactView());
+        }
         break;
     }
   }
@@ -109,6 +121,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                     onTap: () {
                       if (Get.currentRoute != HomeView().toString()) {
                         Get.offAll(() => DashboardView());
+                        controller.selectedCategory.value = "";
                       }
                     },
                     child: Image.asset(
@@ -215,7 +228,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ],
                 ),
                 child: Text(
-                  categories[index],
+                  categories[index].tr,
                   style: GoogleFonts.outfit(
                     fontSize: 13,
                     fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
