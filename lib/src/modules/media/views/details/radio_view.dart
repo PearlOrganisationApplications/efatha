@@ -39,17 +39,13 @@ class RadioView extends StatefulWidget {
 }
 
 class _RadioViewState extends State<RadioView> {
-  // ── GetX controller ──────────────────────────────────────────────────────
-
-  // ── Audio ─────────────────────────────────────────────────────────────────
   final AudioPlayer _player = AudioPlayer();
   bool _isPlaying = false;
   bool _isMuted = false;
   bool _isLoading = false;
 
-  // ── 15-second promo dialog timer ─────────────────────────────────────────
   Timer? _promoTimer;
-  bool _promoShown = false; // show only once per session
+  bool _promoShown = false;
 
   @override
   void initState() {
